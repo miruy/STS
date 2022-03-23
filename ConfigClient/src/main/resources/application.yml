@@ -1,6 +1,13 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672 #rabbitmq 서비스 포트
+    username: guest
+    password: guest
+
 management:
   endpoints:
     web:
       exposure:
-        include: ['env', 'refresh']
+        include: "*"
         # http://localhost:9265/actuator/refresh (POST)

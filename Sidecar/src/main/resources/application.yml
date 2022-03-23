@@ -1,0 +1,14 @@
+server:
+  port: 5678
+  
+spring:
+  application:
+    name: sidecar-nonJVM
+
+sidecar:
+  port: 5000
+  health-uri: http://localhost:5000/health.json
+  hostname: localhost # 사이드카와 비 JVM어플리케이션은 동일 호스트에 있어야 함
+  
+        
+      
