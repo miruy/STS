@@ -1,0 +1,9 @@
+server:
+  port: 9265
+
+spring:
+  application:
+    name: templateEnterprise #서비스 ID(클라이언트가 조회할 서비스 ID)
+  cloud:
+    config:
+      uri: http://localhost:8888 #ConfigServer에 요청할 URL

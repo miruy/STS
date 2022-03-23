@@ -1,0 +1,6 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ['env', 'refresh']
+        # http://localhost:9265/actuator/refresh (POST)
