@@ -19,13 +19,13 @@ import org.springframework.web.client.RestTemplate;
  * 	요청과 응답 간에 중간 연결을 캐치하는 어노테이션 
  */
 @ComponentScan("com.example.msa")
-@EnableCircuitBreaker
-@EnableEurekaClient		//(enable : 실행되면)유레카 클라이어트라는 선언
+//@EnableCircuitBreaker
+//@EnableEurekaClient		//(enable : 실행되면)유레카 클라이어트라는 선언
 @SpringBootApplication
 public class CatalogsApplication {
 	
 	@Bean //생성자 자동 주입 및 bean 자동 새성
-	@LoadBalanced	//RestTemplate에 리본 적용, 리본적용된 객체가 생성될 때 부화분리(LoadBalanced)되게 생성됨
+//	@LoadBalanced	//RestTemplate에 리본 적용, 리본적용된 객체가 생성될 때 부화분리(LoadBalanced)되게 생성됨
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
