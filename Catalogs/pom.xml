@@ -57,6 +57,7 @@
 			<version>${spring-cloud-version}</version>
 		</dependency>
 		
+		
 	</dependencies>
 
 	<build>

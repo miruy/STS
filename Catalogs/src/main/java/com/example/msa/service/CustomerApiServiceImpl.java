@@ -40,8 +40,8 @@ public class CustomerApiServiceImpl implements CustomerApiService{
 	}
 	
 	//위의 메서드가 제대로 실행되지 않을 경우 실행할 메서드 (변명의 개념=Fallback) 
-//	public String getCustomerDetailFallback(String customerId, Throwable ex) {
-//		System.out.println("Error : " + ex.getMessage());
-//		return "고객 정보 조회가 지연되고 있습니다.";
-//	}
+	public String getCustomerDetailFallback(String customerId, Throwable ex) {
+		System.out.println("Error : " + ex.getMessage());
+		return "고객 정보 조회가 지연되고 있습니다.";
+	}
 }
