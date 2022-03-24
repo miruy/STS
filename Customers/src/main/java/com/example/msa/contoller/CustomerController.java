@@ -14,6 +14,6 @@ public class CustomerController {
 		System.out.println("request customerId : " + customerId);
 		
 //		throw new RuntimeException("I/O Exception!");
-		return "[Customer id=" + customerId + "at" + System.currentTimeMillis()+"]";
+		return "[Customer id = " + customerId + " at " + System.currentTimeMillis()+"]";
 	}
 }
