@@ -59,10 +59,10 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 
-	<!-- bookDao객체 생성 -->
-<!-- 	<bean id="bookDao" class="repository.BookDaoImpl"> -->
-<!-- 		<constructor-arg ref="sqlSessionTemplate"></constructor-arg> -->
-<!-- 	</bean> -->
+<!-- 	bookInfoDao객체 생성 -->
+	<bean id="bookInfoDao" class="repository.bookInfoDao">
+		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+	</bean>
 
 <!-- 	<bean id="bookSvc" class="service.BookService"> -->
 <!-- 		<constructor-arg ref="bookDao"></constructor-arg> -->
