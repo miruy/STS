@@ -12,10 +12,6 @@
 	
 <!-- 	자주 사용하는 VO 정보 - alias : 별칭  -->
 	<typeAliases>
-		<typeAlias alias="appraisal" type="model.AppraisalVO"/>
-		<typeAlias alias="bookinfo" type="model.BookinfoVO"/>
-		<typeAlias alias="bookShelf" type="model.BookShelfVO"/>
-		<typeAlias alias="member" type="model.MemberVO"/>
-		<typeAlias alias="administrater" type="model.AdministraterVO"/>
+		<typeAlias alias="bookInfo" type="a.b.c.model.BookInfoVO"/>
 	</typeAliases>
 </configuration>

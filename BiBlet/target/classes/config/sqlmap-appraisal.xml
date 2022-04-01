@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="appraisalDao">
+<mapper namespace="AppraisalDAO">
 <!-- 아래 예시와 다르게 테이블 명 / 컬럼을 대문자로, 쿼리문장을 소문자로 작성하기 -->
 
-	<select id="findAllBook" resultType="BookInfoVO">
+	<select id="findAllBook" resultType="bookInfo">
 		SELECT * FROM bookinfo ORDER BY isbn
 	</select>
 

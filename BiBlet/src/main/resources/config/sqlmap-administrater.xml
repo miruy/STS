@@ -4,9 +4,9 @@
 
 <mapper namespace="administraterDao">
 
-<!-- 	<select id="findAll" resultType="book"> -->
-<!-- 		SELECT * FROM book ORDER BY id -->
-<!-- 	</select> -->
+	<select id="findAll" resultType="book">
+		SELECT * FROM book ORDER BY id
+	</select>
 
 <!-- 	<select id="search" parameterType="HashMap" resultType="book"> -->
 <!-- 		<if test="option  == 'bookname'"> -->

@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-http://www.springframework.org/schema/beans/spring-beans.xsd
-http://www.springframework.org/schema/tx
-http://www.springframework.org/schema/tx/spring-tx.xsd
-http://www.springframework.org/schema/mvc
-http://www.springframework.org/schema/mvc/spring-mvc.xsd
-http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context.xsd">
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:aop="http://www.springframework.org/schema/aop"
+   xmlns:tx="http://www.springframework.org/schema/tx"
+   xmlns:mvc="http://www.springframework.org/schema/mvc"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context.xsd
+  http://www.springframework.org/schema/aop
+  http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+  http://www.springframework.org/schema/tx
+  http://www.springframework.org/schema/tx/spring-tx.xsd
+  http://www.springframework.org/schema/mvc
+  http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
 
-	<mvc:annotation-driven></mvc:annotation-driven>
+   <tx:annotation-driven
+      transaction-manager="transactionManager" />
 
-	<mvc:default-servlet-handler />
-	
-	<!-- dataSource설정 : = context.xml (유저아이디,비밀번호 등 DB계정) 커넥션을 관리하는 애=즉, 나의 
-		DB와 연결되는 애 -->
+   <mvc:annotation-driven />
+   <!-- 컨트롤러 어노테이션을 사용하여 컨트롤러를 이용하기 위한 설정 -->
+
+   <mvc:default-servlet-handler />
+   <!-- dispatcherServlet의 매핑경로를 '/' 로 설정시 웹 소스를 처리하기 위한 설정 =>web.xml -->
+
 	<bean id="dataSource"
 		class="com.mchange.v2.c3p0.ComboPooledDataSource"
 		destroy-method="close">
@@ -27,7 +33,6 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 			value="jdbc:oracle:thin:@itthis.kr:1521:xe"></property>
 		<property name="user" value="urimkim"></property>
 		<property name="password" value="1234"></property>
-
 		<property name="maxPoolSize" value="100"></property>
 		<property name="maxIdleTime" value="600"></property>
 		<property name="idleConnectionTestPeriod" value="300"></property>
@@ -38,9 +43,6 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 
-	<tx:annotation-driven
-		transaction-manager="transactionManager"></tx:annotation-driven>
-
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
@@ -48,46 +50,32 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 			value="classpath:config/mybatis-config.xml"></property>
 		<property name="mapperLocations">
 			<list>
-				<value>classpath:config/sqlmap-book.xml</value>
+				<value>classpath:config/sqlmap-appraisal.xml</value>
 			</list>
 		</property>
 	</bean>
 
+
 	<bean id="sqlSessionTemplate"
 		class="org.mybatis.spring.SqlSessionTemplate"
 		destroy-method="clearCache">
-		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+		<constructor-arg name="sqlSessionFactory"
+			ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 
-<!-- 	bookInfoDao객체 생성 -->
-	<bean id="bookInfoDao" class="repository.bookInfoDao">
-		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
-	</bean>
-
-<!-- 	<bean id="bookSvc" class="service.BookService"> -->
-<!-- 		<constructor-arg ref="bookDao"></constructor-arg> -->
-<!-- 	</bean> -->
 
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="200000000" />
 		<property name="maxInMemorySize" value="200000000" />
 	</bean>
-	
 
-	<!-- mvc:view-resolvers : mvc패턴을 분해하는 역할, view : 어떤방식으로 사용할지 정하는 위치 -->
-	<mvc:view-resolvers>
-		<mvc:jsp prefix="/WEB-INF/views/" suffix=".jsp" />
-	</mvc:view-resolvers>
+	<!-- DAO, Service객체 생성 태그 추가하기 -->
 
+	<bean id="appraisalDAO" class="a.b.c.repository.AppraisalDAOImpl" />
 
-		<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basenames">
-			<list>
-				<value>message.label</value>
-			</list>
-		</property>
-		<property name="defaultEncoding" value="UTF-8"></property>
-	</bean>
-	
+<!-- 	<bean id="bookInfoSvc" class="a.b.c.service.BookInfoServiceImpl"> -->
+<!-- 		<property name="appraisalDAO" ref="appraisalDAO"></property> -->
+<!-- 	</bean> -->
+
 </beans>
