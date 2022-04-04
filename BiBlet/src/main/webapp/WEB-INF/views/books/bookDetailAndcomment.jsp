@@ -7,11 +7,62 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>BiBlet-상세페이지/평가페이지</title>
+<title>상세 및 평가</title>
 </head>
 <body>
-	<form method="post" >
-		<input type="text" name="comment">
-	</form>
+	<c:if test="${!empty book}">
+		<table border="1">
+
+			<tr>
+				<th>일련번호</th>
+				<td>${book.isbn}</td>
+			</tr>
+
+			<tr>
+				<th>도서 이름</th>
+				<td>${books.book_name}</td>
+			</tr>
+
+			<tr>
+				<th>출판사</th>
+				<td>${books.publisher}</td>
+			</tr>
+
+			<tr>
+				<th>저자</th>
+				<td>${books.author}</td>
+			</tr>
+
+			<tr>
+				<th>제작년도</th>
+				<td>${books.produc_year}</td>
+			</tr>
+
+			<tr>
+				<th>총 페이지</th>
+				<td>${books.book_page}</td>
+			</tr>
+
+			<tr>
+				<th>카테고리</th>
+				<td>${books.book_category}</td>
+			</tr>
+
+			<tr>
+				<th>연령등급</th>
+				<td>${books.age_grade}</td>
+			</tr>
+			
+			<tr>
+				<th>줄거리</th>
+				<td>${books.book_sum}</td>
+			</tr>
+			
+			<tr>
+				<th>표지</th>
+				<td>${books.book_cover}</td>
+			</tr>
+		</table>
+	</c:if>
 </body>
 </html>

@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import a.b.c.model.AppraisalVO;
 import a.b.c.model.BookInfoVO;
 
 @Repository
@@ -20,24 +21,23 @@ public class AppraisalDAOImpl implements AppraisalDAO{
 		this.sqlSessionTemplate = sqlSessionTemplate;
 	}
 	
+	//도서 전체 목록 
 	@Override
 	public List<BookInfoVO> findAllBook(){
 		return sqlSessionTemplate.selectList("findAllBook");
 	}
 	
+	//도서 상세보기
+	@Override
+	public BookInfoVO bookDetail(String isbn) {
+		return sqlSessionTemplate.selectOne("bookDetail");
+	}
 	
-	
-	
-	
-//private SqlSessionTemplate sqlSessionTemplate;
-//	
-//	public BookDaoImpl(SqlSessionTemplate sqlSessionTemplate) {
-//		this.sqlSessionTemplate = sqlSessionTemplate;
-//	}
-//	
-//	//도서 전체 목록
+	//평가(코멘트) 작성
 //	@Override
-//	public List<Book> findAll(){
-//		return sqlSessionTemplate.selectList("findAll");
+//	public void writComment(AppraisalVO comment) {
+//		return sqlSessionTemplate.selectList("writComment");
 //	}
+	
+	
 }

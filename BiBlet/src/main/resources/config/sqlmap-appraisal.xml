@@ -8,6 +8,10 @@
 	<select id="findAllBook" resultType="bookInfo">
 		SELECT * FROM bookinfo ORDER BY isbn
 	</select>
+	
+	<select id="bookDetail" parameterType="String" resultType="bookInfo">
+		SELECT * FROM bookinfo WHERE isbn=#{isbn}
+	</select>
 
 <!-- 	<select id="search" parameterType="HashMap" resultType="book"> -->
 <!-- 		<if test="option  == 'bookname'"> -->
@@ -21,9 +25,6 @@
 <!-- 		</if> -->
 <!-- 	</select> -->
 
-<!-- 	<select id="findById" parameterType="Long" resultType="book"> -->
-<!-- 		SELECT * FROM book WHERE id=#{id} -->
-<!-- 	</select> -->
 
 <!-- 	<insert id="saveForm" parameterType="book"> -->
 <!-- 		INSERT INTO book (id, bookname, isbn, orgimagename, storedimagename, -->
