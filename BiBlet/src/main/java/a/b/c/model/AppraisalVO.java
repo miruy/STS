@@ -3,8 +3,6 @@ package a.b.c.model;
 import java.util.Date;
 
 public class AppraisalVO {
-
-		//필드 선언시 컬럼 명과 동일하게 소문자로 작성하기
 			
 			private Long mem_num;	//회원 번호(PK,FK)
 			private String isbn;	//도서 일련번호(PK,FK)

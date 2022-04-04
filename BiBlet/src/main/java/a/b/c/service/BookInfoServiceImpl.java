@@ -13,7 +13,7 @@ public class BookInfoServiceImpl implements BookInfoService{
 	
 	private AppraisalDAO appraisalDAO;
 
-	//appraisalDAOsetter만들기
+	//appraisalDAOsetter
 	@Autowired
 	public void setAppraisalDAO(AppraisalDAO appraisalDAO) {
 		this.appraisalDAO = appraisalDAO;

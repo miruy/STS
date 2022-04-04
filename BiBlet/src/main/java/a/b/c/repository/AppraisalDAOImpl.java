@@ -16,11 +16,14 @@ public class AppraisalDAOImpl implements AppraisalDAO{
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	
+	public AppraisalDAOImpl(SqlSessionTemplate sqlSessionTemplate) {
+		this.sqlSessionTemplate = sqlSessionTemplate;
+	}
+	
 	@Override
 	public List<BookInfoVO> findAllBook(){
 		return sqlSessionTemplate.selectList("findAllBook");
 	}
-	
 	
 	
 	

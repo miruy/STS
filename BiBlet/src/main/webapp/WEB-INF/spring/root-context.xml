@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-   xmlns:context="http://www.springframework.org/schema/context"
-   xmlns:aop="http://www.springframework.org/schema/aop"
-   xmlns:tx="http://www.springframework.org/schema/tx"
-   xmlns:mvc="http://www.springframework.org/schema/mvc"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
   http://www.springframework.org/schema/beans/spring-beans.xsd
   http://www.springframework.org/schema/context
   http://www.springframework.org/schema/context/spring-context.xsd
@@ -16,14 +16,14 @@
   http://www.springframework.org/schema/mvc
   http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
 
-   <tx:annotation-driven
-      transaction-manager="transactionManager" />
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
 
-   <mvc:annotation-driven />
-   <!-- 컨트롤러 어노테이션을 사용하여 컨트롤러를 이용하기 위한 설정 -->
+	<mvc:annotation-driven />
+	<!-- 컨트롤러 어노테이션을 사용하여 컨트롤러를 이용하기 위한 설정 -->
 
-   <mvc:default-servlet-handler />
-   <!-- dispatcherServlet의 매핑경로를 '/' 로 설정시 웹 소스를 처리하기 위한 설정 =>web.xml -->
+	<mvc:default-servlet-handler />
+	<!-- dispatcherServlet의 매핑경로를 '/' 로 설정시 웹 소스를 처리하기 위한 설정 =>web.xml -->
 
 	<bean id="dataSource"
 		class="com.mchange.v2.c3p0.ComboPooledDataSource"
@@ -63,19 +63,15 @@
 			ref="sqlSessionFactory"></constructor-arg>
 	</bean>
 
-
-	<bean id="multipartResolver"
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="200000000" />
-		<property name="maxInMemorySize" value="200000000" />
-	</bean>
-
 	<!-- DAO, Service객체 생성 태그 추가하기 -->
 
-	<bean id="appraisalDAO" class="a.b.c.repository.AppraisalDAOImpl" />
+	<bean id="appraisalDAO" class="a.b.c.repository.AppraisalDAOImpl">
+		<constructor-arg ref="sqlSessionTemplate"></constructor-arg>
+	</bean>
 
-<!-- 	<bean id="bookInfoSvc" class="a.b.c.service.BookInfoServiceImpl"> -->
-<!-- 		<property name="appraisalDAO" ref="appraisalDAO"></property> -->
-<!-- 	</bean> -->
+	<bean id="bookInfoService"
+		class="a.b.c.service.BookInfoServiceImpl">
+		<property name="appraisalDAO" ref="appraisalDAO"></property>
+	</bean>
 
 </beans>

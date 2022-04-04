@@ -23,8 +23,10 @@ public class BookInfoVO {
 		 
 		public BookInfoVO(){}
 		
-		public BookInfoVO(String book_name, String publisher, String author, Date produc_year,
+		public BookInfoVO(String isbn, String book_name, String publisher, String author, Date produc_year,
 					int book_page, String book_category, String age_grade, String book_sum, String book_cover) {
+			super();
+			this.isbn = isbn;
 			this.book_name = book_name;
 			this.publisher = publisher;
 			this.author = author;
