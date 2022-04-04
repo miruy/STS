@@ -33,23 +33,20 @@ public class AppraisalController {
 	public String findAllBook(Model model) {
 		List<BookInfoVO> books = bookInfoService.findAllBook();
 		
-		for(BookInfoVO book : books) {
-			logger.debug("isbn:"+book.getIsbn());
-			logger.debug("Book_name:"+book.getBook_name());
-			logger.debug("Publisher:"+book.getPublisher());
-			logger.debug("Author:"+book.getAuthor());
-			//logger.debug("Produc_year:"+book.getProduc_year().toString());
-			logger.debug("Book_page:"+Integer.toString(book.getBook_page()));
-			logger.debug("Book_category:"+book.getBook_category());
-			logger.debug("Age_grade:"+book.getAge_grade());
-			logger.debug("Book_sum:"+book.getBook_sum());
-			logger.debug("Book_cover:"+book.getBook_cover());
-			
-			
-		}
-		
+//		DB에서 불러온 데이터 확인용
+//		for(BookInfoVO book : books) {
+//			logger.debug("isbn:"+book.getIsbn());
+//			logger.debug("Book_name:"+book.getBook_name());
+//			logger.debug("Publisher:"+book.getPublisher());
+//			logger.debug("Author:"+book.getAuthor());
+//			//logger.debug("Produc_year:"+book.getProduc_year().toString());
+//			logger.debug("Book_page:"+Integer.toString(book.getBook_page()));
+//			logger.debug("Book_category:"+book.getBook_category());
+//			logger.debug("Age_grade:"+book.getAge_grade());
+//			logger.debug("Book_sum:"+book.getBook_sum());
+//			logger.debug("Book_cover:"+book.getBook_cover());	
+//		}
 		model.addAttribute("books", books);
-//		System.out.println(books.get(2).getIsbn());
 		return "/books/bookInfoList";
 	}
 }

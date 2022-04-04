@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>BiBlet 상세페이지</title>
+<title>BiBlet 도서 전체 목록</title>
 </head>
 <body>
 	 <c:if test="${!empty books}">
@@ -41,5 +41,9 @@
 			</c:forEach>
 		</table>	
 	</c:if>
+	
+	
+	
+	
 </body>
 </html>
