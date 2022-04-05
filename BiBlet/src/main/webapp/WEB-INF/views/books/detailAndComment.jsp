@@ -22,23 +22,94 @@
 				<th>카테고리</th>
 				<th>연령등급</th>
 				<th>줄거리</th>
-				<th>표지</th>	
+				<th>표지</th>
 			</tr>
-			
-				<tr>
-					<td>${book.isbn}</td>
-					<td>${book.book_name}</td>
-					<td>${book.publisher}</td>
-					<td>${book.author}</td>
-					<td>${book.produc_year}</td>
-					<td>${book.book_page}</td>
-					<td>${book.book_category}</td>
-					<td>${book.age_grade}</td>
-					<td>${book.book_sum}</td>
-					<td>${book.book_cover}</td>
-				</tr>
-		</table>	
+
+			<tr>
+				<td>${book.isbn}</td>
+				<td>${book.book_name}</td>
+				<td>${book.publisher}</td>
+				<td>${book.author}</td>
+				<td>${book.produc_year}</td>
+				<td>${book.book_page}</td>
+				<td>${book.book_category}</td>
+				<td>${book.age_grade}</td>
+				<td>${book.book_sum}</td>
+				<td>${book.book_cover}</td>
+			</tr>
+		</table>
 	</c:if>
-	
+
+	<form method="post" commandName="commentCmd">
+		<table border="1">
+			<tr>
+				<th>별점</th>
+				<td>
+					<div class="startRadio">
+						<label class="startRadio__box"> 
+						<input type="radio" name="star" id=""> 
+						<span class="startRadio__img"></span>
+						</label> 
+						
+						<label class="startRadio__box"> 
+						<input type="radio" name="star" id=""> 
+						<span class="startRadio__img"></span>
+						</label> 
+						
+						<label class="startRadio__box"> 
+						<input type="radio" name="star" id=""> 
+						<span class="startRadio__img"></span>
+						</label> 
+						
+						<label class="startRadio__box"> 
+						<input type="radio" name="star" id=""> 
+						<span class="startRadio__img"></span>
+						</label> 
+						
+						<label class="startRadio__box"> 
+						<input type="radio" name="star" id=""> 
+						<span class="startRadio__img"></span>
+						</label> 
+						
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<th>평가</th>
+				<td><textarea name="book_comment"></textarea></td>
+			</tr>
+
+			<tr>
+				<th>구독 시작 날짜</th>
+				<td><input type="date" name="start_date" /></td>
+			</tr>
+
+			<tr>
+				<th>구독 완료 날짜</th>
+				<td><input type="date" name="end_date" /></td>
+			</tr>
+
+			<tr>
+				<th>평가 공개 여부</th>
+				<td><input type="checkbox" name="co_prv" value="공개" />공개 <input
+					type="checkbox" name="co_prv" value="비공개" />비공개</td>
+			</tr>
+		</table>
+
+		<input type="submit" value="도서 평가 등록">
+	</form>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
