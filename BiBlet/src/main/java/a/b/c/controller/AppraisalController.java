@@ -44,7 +44,7 @@ public class AppraisalController {
 //			logger.debug("Book_cover:"+book.getBook_cover());	
 //		}
 		model.addAttribute("books", books);
-		return "books/bookInfoList";
+		return "bookInfoList";
 	}
 	
 	
@@ -54,15 +54,13 @@ public class AppraisalController {
 	@RequestMapping(value="/read/{isbn}")
 	public String bookDetail(@PathVariable("isbn") String isbn, Model model) {
 		BookInfoVO book = bookInfoService.bookDetail(isbn);
-		
-		System.out.println("book : " + book.getIsbn());
-		System.out.println("isbn : " + isbn);
-		
+//		System.out.println("book : " + book.getIsbn());
+//		System.out.println("isbn : " + isbn);	
 		if(book == null) {
-			return "books/bookInfoList";
+			return "bookInfoList";
 		}
 		model.addAttribute("book", book);
-		return "books/bookDetailAndcomment";
+		return "detailAndComment";
 	}
 	
 	
