@@ -7,13 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import a.b.c.HomeController;
-import a.b.c.model.AppraisalVO;
 import a.b.c.model.BookInfoVO;
 import a.b.c.service.BookInfoService;
 
@@ -24,15 +22,11 @@ public class AppraisalController {
 	//DB데이터 확인용 Debug코드
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	@Autowired
 	private BookInfoService bookInfoService;
 	
-	@Autowired
-	public AppraisalController(BookInfoService bookInfoService) {
-		this.bookInfoService = bookInfoService;
-	}
-	
 	//모든 도서 정보 불러오기
-	@GetMapping(value="/list") 
+	@RequestMapping(value="/list") 
 	public String findAllBook(Model model) {
 		List<BookInfoVO> books = bookInfoService.findAllBook();
 		
@@ -50,22 +44,25 @@ public class AppraisalController {
 //			logger.debug("Book_cover:"+book.getBook_cover());	
 //		}
 		model.addAttribute("books", books);
-		return "/books/bookInfoList";
+		return "books/bookInfoList";
 	}
 	
 	
 	
 	
 	//도서 정보 상세보기 및 평가(코멘트)작성(Form)
-	@GetMapping(value="/read/{isbn}")
+	@RequestMapping(value="/read/{isbn}")
 	public String bookDetail(@PathVariable("isbn") String isbn, Model model) {
 		BookInfoVO book = bookInfoService.bookDetail(isbn);
 		
+		System.out.println("book : " + book.getIsbn());
+		System.out.println("isbn : " + isbn);
+		
 		if(book == null) {
-			return "redirect:/books/bookInfoList";
+			return "books/bookInfoList";
 		}
 		model.addAttribute("book", book);
-		return "books/bookDetailAndComment";
+		return "books/bookDetailAndcomment";
 	}
 	
 	

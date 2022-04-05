@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import a.b.c.model.AppraisalVO;
 import a.b.c.model.BookInfoVO;
 
-@Repository
+//@Repository
 public class AppraisalDAOImpl implements AppraisalDAO{
 	
 	// 상세,평가 페이지에서 사용되는 기능을 모아놓은 인터페이스를 구현한 클래스
@@ -30,7 +30,7 @@ public class AppraisalDAOImpl implements AppraisalDAO{
 	//도서 상세보기
 	@Override
 	public BookInfoVO bookDetail(String isbn) {
-		return sqlSessionTemplate.selectOne("bookDetail");
+		return sqlSessionTemplate.selectOne("bookDetail",isbn);
 	}
 	
 	//평가(코멘트) 작성

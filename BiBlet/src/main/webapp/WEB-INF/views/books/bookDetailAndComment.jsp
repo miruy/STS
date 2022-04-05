@@ -20,47 +20,47 @@
 
 			<tr>
 				<th>도서 이름</th>
-				<td>${books.book_name}</td>
+				<td>${book.book_name}</td>
 			</tr>
 
 			<tr>
 				<th>출판사</th>
-				<td>${books.publisher}</td>
+				<td>${book.publisher}</td>
 			</tr>
 
 			<tr>
 				<th>저자</th>
-				<td>${books.author}</td>
+				<td>${book.author}</td>
 			</tr>
 
 			<tr>
 				<th>제작년도</th>
-				<td>${books.produc_year}</td>
+				<td>${book.produc_year}</td>
 			</tr>
 
 			<tr>
 				<th>총 페이지</th>
-				<td>${books.book_page}</td>
+				<td>${book.book_page}</td>
 			</tr>
 
 			<tr>
 				<th>카테고리</th>
-				<td>${books.book_category}</td>
+				<td>${book.book_category}</td>
 			</tr>
 
 			<tr>
 				<th>연령등급</th>
-				<td>${books.age_grade}</td>
+				<td>${book.age_grade}</td>
 			</tr>
 			
 			<tr>
 				<th>줄거리</th>
-				<td>${books.book_sum}</td>
+				<td>${book.book_sum}</td>
 			</tr>
 			
 			<tr>
 				<th>표지</th>
-				<td>${books.book_cover}</td>
+				<td>${book.book_cover}</td>
 			</tr>
 		</table>
 	</c:if>

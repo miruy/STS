@@ -13,7 +13,7 @@ import a.b.c.repository.AppraisalDAO;
 public class BookInfoServiceImpl implements BookInfoService {
 
 	private AppraisalDAO appraisalDAO;
-
+	
 	// appraisalDAOsetter
 	@Autowired
 	public void setAppraisalDAO(AppraisalDAO appraisalDAO) {
