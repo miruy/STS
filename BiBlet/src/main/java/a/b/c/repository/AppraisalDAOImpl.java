@@ -34,10 +34,10 @@ public class AppraisalDAOImpl implements AppraisalDAO{
 	}
 	
 	//평가(코멘트) 작성
-//	@Override
-//	public void writComment(AppraisalVO comment) {
-//		return sqlSessionTemplate.selectList("writComment");
-//	}
+	@Override
+	public void writeComment(AppraisalVO appraisal) {
+		sqlSessionTemplate.insert("writeComment", appraisal);
+	}
 	
 	
 }

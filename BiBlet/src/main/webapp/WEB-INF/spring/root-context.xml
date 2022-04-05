@@ -70,7 +70,7 @@
 	</bean>
 
 	<bean id="bookInfoService"
-		class="a.b.c.service.BookInfoServiceImpl">
+		class="a.b.c.service.AppraisalServiceImpl">
 		<property name="appraisalDAO" ref="appraisalDAO"></property>
 	</bean>
 

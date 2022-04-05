@@ -10,7 +10,7 @@ import a.b.c.model.BookInfoVO;
 import a.b.c.repository.AppraisalDAO;
 
 @Service
-public class BookInfoServiceImpl implements BookInfoService {
+public class AppraisalServiceImpl implements AppraisalService {
 
 	private AppraisalDAO appraisalDAO;
 	
@@ -33,8 +33,8 @@ public class BookInfoServiceImpl implements BookInfoService {
 	}
 
 	//평가(코멘트) 작성
-//	@Override
-//	public void writComment(AppraisalVO comment) {
-//		return ;
-//	}
+	@Override
+	public void writeComment(AppraisalVO appraisal) {
+		appraisalDAO.writeComment(appraisal);
+	}
 }

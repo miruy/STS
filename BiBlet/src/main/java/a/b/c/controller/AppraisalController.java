@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import a.b.c.HomeController;
 import a.b.c.model.BookInfoVO;
-import a.b.c.service.BookInfoService;
+import a.b.c.service.AppraisalService;
 
 @Controller
 @SessionAttributes("BookInfoVO")
@@ -23,12 +23,12 @@ public class AppraisalController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
-	private BookInfoService bookInfoService;
+	private AppraisalService appraisalService;
 	
 	//모든 도서 정보 불러오기
 	@RequestMapping(value="/list") 
 	public String findAllBook(Model model) {
-		List<BookInfoVO> books = bookInfoService.findAllBook();
+		List<BookInfoVO> books = appraisalService.findAllBook();
 		
 //		DB에서 불러온 데이터 확인용
 //		for(BookInfoVO book : books) {
@@ -53,7 +53,7 @@ public class AppraisalController {
 	//도서 정보 상세보기 및 평가(코멘트)작성(Form)
 	@RequestMapping(value="/read/{isbn}")
 	public String bookDetail(@PathVariable("isbn") String isbn, Model model) {
-		BookInfoVO book = bookInfoService.bookDetail(isbn);
+		BookInfoVO book = appraisalService.bookDetail(isbn);
 //		System.out.println("book : " + book.getIsbn());
 //		System.out.println("isbn : " + isbn);	
 		if(book == null) {

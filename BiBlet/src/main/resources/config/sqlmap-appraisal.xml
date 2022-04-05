@@ -12,6 +12,14 @@
 	<select id="bookDetail" parameterType="String" resultType="bookInfo">
 		SELECT * FROM bookinfo WHERE isbn=#{isbn, jdbcType=VARCHAR}
 	</select>
+	
+	<insert id="writeComment" parameterType="appraisal">
+		INSERT INTO bookinfo (isbn, book_name, publisher, author, produc_year, book_page, book_category, age_grade, book_sum, book_cover)
+		VALUES(bookinfo_SEQ.nextval, #{book_name}, #{publisher}, #{author}, #{produc_year}, #{book_page}, #{book_category}, #{age_grade}, #{book_sum}, #{book_cover})
+<!-- 		<selectKey keyProperty="id" resultType="Long"> -->
+<!-- 			SELECT NVL(MAX(id), 0) FROM member -->
+<!-- 		</selectKey> -->
+	</insert>
 
 <!-- 	<select id="search" parameterType="HashMap" resultType="book"> -->
 <!-- 		<if test="option  == 'bookname'"> -->
@@ -24,17 +32,6 @@
 <!-- 			SELECT * FROM book WHERE pubcompany LIKE '%'||#{keyword}||'%' -->
 <!-- 		</if> -->
 <!-- 	</select> -->
-
-
-<!-- 	<insert id="saveForm" parameterType="book"> -->
-<!-- 		INSERT INTO book (id, bookname, isbn, orgimagename, storedimagename, -->
-<!-- 		author, pubcompany, price, contents) -->
-<!-- 		VALUES(book_SEQ.nextval, #{bookname}, #{isbn}, #{orgimagename}, #{storedimagename}, #{author}, -->
-<!-- 		#{pubcompany}, #{price}, #{contents}) -->
-<!-- 		<selectKey keyProperty="id" resultType="Long"> -->
-<!-- 			SELECT NVL(MAX(id), 0) FROM member -->
-<!-- 		</selectKey> -->
-<!-- 	</insert> -->
 
 <!-- 	<select id="findByIsbn" parameterType="String" resultType="book"> -->
 <!-- 		SELECT * FROM book WHERE isbn=#{isbn} -->
