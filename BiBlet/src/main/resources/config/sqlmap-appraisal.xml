@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="bookDetail" parameterType="String" resultType="bookInfo">
-		SELECT * FROM bookinfo WHERE isbn=#{isbn}
+		SELECT * FROM bookinfo WHERE isbn=#{isbn, jdbcType=VARCHAR}
 	</select>
 
 <!-- 	<select id="search" parameterType="HashMap" resultType="book"> -->

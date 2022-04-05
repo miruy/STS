@@ -60,6 +60,7 @@ public class AppraisalController {
 	@GetMapping(value="/read/{isbn}")
 	public String bookDetail(@PathVariable("isbn") String isbn, Model model) {
 		BookInfoVO book = bookInfoService.bookDetail(isbn);
+		
 		if(book == null) {
 			return "redirect:/books/bookInfoList";
 		}
