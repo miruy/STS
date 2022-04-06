@@ -20,6 +20,15 @@
 <!-- 			SELECT NVL(MAX(id), 0) FROM member -->
 <!-- 		</selectKey> -->
 	</insert>
+	
+	
+	
+	
+<!-- 	<select id="memberInfo" parameterType="Long" resultType="memberInfo"> -->
+<!-- 		SELECT * FROM member WHERE mem_num=#{mem_num, jdbcType=INT} -->
+<!-- 	</select> -->
+	
+	
 
 <!-- 	<select id="search" parameterType="HashMap" resultType="book"> -->
 <!-- 		<if test="option  == 'bookname'"> -->

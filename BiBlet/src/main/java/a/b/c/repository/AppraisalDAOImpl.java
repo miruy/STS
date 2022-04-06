@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import a.b.c.model.AppraisalVO;
 import a.b.c.model.BookInfoVO;
+import a.b.c.model.MemberVO;
 
 @Repository
 public class AppraisalDAOImpl implements AppraisalDAO{
@@ -40,4 +41,21 @@ public class AppraisalDAOImpl implements AppraisalDAO{
 	}
 	
 	
+	
+	//회원(한명) 정보 보기 
+	@Override
+	public MemberVO memberInfo(Long mem_num) {
+		return sqlSessionTemplate.selectOne("memberInfo", mem_num);
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+

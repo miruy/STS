@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import a.b.c.HomeController;
 import a.b.c.model.AppraisalVO;
 import a.b.c.model.BookInfoVO;
+import a.b.c.model.MemberVO;
 import a.b.c.service.AppraisalService;
 
 @Controller
@@ -65,17 +66,22 @@ public class AppraisalController {
 	@PostMapping(value = "/read/{isbn}")
 	public String writComment(AppraisalVO appraisalCmd, Model model) {
 		AppraisalVO appraisal = new AppraisalVO();
+		MemberVO member = new MemberVO();
+		BookInfoVO book = new BookInfoVO();
 		
-		//멤버 번호와 도서 일련변호를 가져와서 여기에 사용해야함
-		appraisal.setMem_num();
-		appraisal.setIsbn);
+		appraisal.setMem_num(member.getMem_num());
+		appraisal.setIsbn(book.getIsbn());
 		appraisal.setStar(appraisalCmd.getStar());
 		appraisal.setStart_date(appraisalCmd.getStart_date());
 		appraisal.setEnd_date(appraisalCmd.getEnd_date());
 		appraisal.setCo_prv(appraisalCmd.getCo_prv());
 		
+		appraisalService.writeComment(appraisal);
 		
+		return "myComment";
 	}
+	
+
 }
 
 

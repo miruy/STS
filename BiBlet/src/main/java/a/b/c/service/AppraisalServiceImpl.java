@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import a.b.c.model.AppraisalVO;
 import a.b.c.model.BookInfoVO;
+import a.b.c.model.MemberVO;
 import a.b.c.repository.AppraisalDAO;
 
 @Service
@@ -37,4 +38,18 @@ public class AppraisalServiceImpl implements AppraisalService {
 	public void writeComment(AppraisalVO appraisal) {
 		appraisalDAO.writeComment(appraisal);
 	}
+	
+	
+	//회원(한명) 정보 보기 
+	@Override
+	public MemberVO memberInfo(Long mem_num) {
+		return appraisalDAO.memberInfo(mem_num);
+	}
 }
+
+
+
+
+
+
+
