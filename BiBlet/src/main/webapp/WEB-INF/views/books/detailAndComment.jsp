@@ -41,7 +41,9 @@
 			</tr>
 		</table>
 	</c:if>
-
+	
+	<br>
+	
 	<form method="post" commandName="commentCmd">
 		<table border="1">
 			<tr>

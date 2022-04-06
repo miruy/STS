@@ -7,29 +7,32 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import a.b.c.HomeController;
+import a.b.c.model.AppraisalVO;
 import a.b.c.model.BookInfoVO;
 import a.b.c.service.AppraisalService;
 
 @Controller
 @SessionAttributes("BookInfoVO")
-@RequestMapping("/AppraisalPage")		
+@RequestMapping("/AppraisalPage")
 public class AppraisalController {
-	//DB데이터 확인용 Debug코드
+	// DB데이터 확인용 Debug코드
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
+
 	@Autowired
 	private AppraisalService appraisalService;
-	
-	//모든 도서 정보 불러오기
-	@RequestMapping(value="/list") 
+
+	// 모든 도서 정보 불러오기
+	@GetMapping(value = "/list")
 	public String findAllBook(Model model) {
 		List<BookInfoVO> books = appraisalService.findAllBook();
-		
+
 //		DB에서 불러온 데이터 확인용
 //		for(BookInfoVO book : books) {
 //			logger.debug("isbn:"+book.getIsbn());
@@ -46,36 +49,34 @@ public class AppraisalController {
 		model.addAttribute("books", books);
 		return "bookInfoList";
 	}
-	
-	
-	
-	
-	//도서 정보 상세보기 및 평가(코멘트)작성(Form)
-	@RequestMapping(value="/read/{isbn}")
+
+	// 도서 정보 상세보기
+	@GetMapping(value = "/read/{isbn}")
 	public String bookDetail(@PathVariable("isbn") String isbn, Model model) {
 		BookInfoVO book = appraisalService.bookDetail(isbn);
-//		System.out.println("book : " + book.getIsbn());
-//		System.out.println("isbn : " + isbn);	
-		if(book == null) {
+		if (book == null) {
 			return "bookInfoList";
 		}
 		model.addAttribute("book", book);
 		return "detailAndComment";
 	}
-	
-	
-	//평가(코멘트)작성(Form)
-//	@GetMapping(value="/read/{isbn}")
-//	public String writComment() {
-//		
-//	}
+
+	// 평가(코멘트)작성
+	@PostMapping(value = "/read/{isbn}")
+	public String writComment(AppraisalVO appraisalCmd, Model model) {
+		AppraisalVO appraisal = new AppraisalVO();
+		
+		//멤버 번호와 도서 일련변호를 가져와서 여기에 사용해야함
+		appraisal.setMem_num();
+		appraisal.setIsbn);
+		appraisal.setStar(appraisalCmd.getStar());
+		appraisal.setStart_date(appraisalCmd.getStart_date());
+		appraisal.setEnd_date(appraisalCmd.getEnd_date());
+		appraisal.setCo_prv(appraisalCmd.getCo_prv());
+		
+		
+	}
 }
-
-
-
-
-
-
 
 
 

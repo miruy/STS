@@ -14,8 +14,8 @@
 	</select>
 	
 	<insert id="writeComment" parameterType="appraisal">
-		INSERT INTO bookinfo (isbn, book_name, publisher, author, produc_year, book_page, book_category, age_grade, book_sum, book_cover)
-		VALUES(bookinfo_SEQ.nextval, #{book_name}, #{publisher}, #{author}, #{produc_year}, #{book_page}, #{book_category}, #{age_grade}, #{book_sum}, #{book_cover})
+		INSERT INTO appraisal (mem_num, isbn, star, book_comment, start_date, end_date, co_prv)
+		VALUES(1, '12345678', #{star}, #{book_comment}, #{start_date}, #{end_date}, #{co_prv})
 <!-- 		<selectKey keyProperty="id" resultType="Long"> -->
 <!-- 			SELECT NVL(MAX(id), 0) FROM member -->
 <!-- 		</selectKey> -->
