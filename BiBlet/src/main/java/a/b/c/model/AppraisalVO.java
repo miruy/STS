@@ -3,7 +3,7 @@ package a.b.c.model;
 public class AppraisalVO {
 			
 			private Long mem_num;	//회원 번호(PK,FK)
-			private String isbn;	//도서 일련번호(PK,FK)
+			private Long appraisal_num;	//평가 번호(PK)
 			private String star;	//별점
 			private String book_comment;	//코멘트(평가)
 			private String start_date;	//도서 구독 시작 날짜
@@ -12,10 +12,10 @@ public class AppraisalVO {
 			 
 			public AppraisalVO(){}
 			
-			public AppraisalVO(Long mem_num, String isbn, String star, String book_comment, 
+			public AppraisalVO(Long mem_num, Long appraisal_num, String isbn, String star, String book_comment, 
 					String start_dater, String end_date, String co_prv) {
 				this.mem_num = mem_num;
-				this.isbn = isbn;
+				this.appraisal_num = appraisal_num;
 				this.star = star;
 				this.book_comment = book_comment;
 				this.start_date = start_dater;
@@ -31,12 +31,12 @@ public class AppraisalVO {
 				this.mem_num = mem_num;
 			}
 
-			public String getIsbn() {
-				return isbn;
+			public Long getAppraisal_num() {
+				return appraisal_num;
 			}
 
-			public void setIsbn(String isbn) {
-				this.isbn = isbn;
+			public void setAppraisal_num(Long appraisal_num) {
+				this.appraisal_num = appraisal_num;
 			}
 
 			public String getStar() {
@@ -78,5 +78,6 @@ public class AppraisalVO {
 			public void setCo_prv(String co_prv) {
 				this.co_prv = co_prv;
 			}
+
 			
 }

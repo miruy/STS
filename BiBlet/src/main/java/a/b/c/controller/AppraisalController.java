@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import a.b.c.HomeController;
+import a.b.c.model.AppraisalCommand;
 import a.b.c.model.AppraisalVO;
 import a.b.c.model.BookInfoVO;
 import a.b.c.model.MemberVO;
@@ -64,27 +66,32 @@ public class AppraisalController {
 
 	// 평가(코멘트)작성
 	@PostMapping(value = "/read/{isbn}")
-	public String writComment(AppraisalVO appraisalCmd, Model model) {
+	public String writComment(@ModelAttribute("commentCmd")AppraisalCommand appraisalCmd, Model model) {
 		AppraisalVO appraisal = new AppraisalVO();
+		MemberVO member = new MemberVO();
+		
 		Long mem_num = (long) 1;
-		String isbn = "12345678";
 		
+		member.setMem_num(mem_num);
 		
-		appraisalService.memberInfo(mem_num);
-		appraisalService.bookDetail(isbn);
-		
-//		appraisal.setMem_num(member.getMem_num());
-//		
-//		System.out.println(member.getMem_num());
-//		
-//		appraisal.setIsbn(book.getIsbn());
-//		
-//		System.out.println(book.getIsbn());
+		appraisal.setMem_num(member.getMem_num());
+		System.out.println(member.getMem_num());
 		
 		appraisal.setStar(appraisalCmd.getStar());
+		System.out.println(appraisal.getStar());
+		
+		appraisal.setBook_comment(appraisalCmd.getBook_comment());
+		System.out.println(appraisal.getBook_comment());
+		
 		appraisal.setStart_date(appraisalCmd.getStart_date());
+		System.out.println(appraisal.getStart_date());
+		
 		appraisal.setEnd_date(appraisalCmd.getEnd_date());
+		System.out.println(appraisal.getEnd_date());
+		
 		appraisal.setCo_prv(appraisalCmd.getCo_prv());
+		System.out.println(appraisal.getCo_prv());
+		
 		
 		appraisalService.writeComment(appraisal);
 		
