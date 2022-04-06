@@ -66,11 +66,21 @@ public class AppraisalController {
 	@PostMapping(value = "/read/{isbn}")
 	public String writComment(AppraisalVO appraisalCmd, Model model) {
 		AppraisalVO appraisal = new AppraisalVO();
-		MemberVO member = new MemberVO();
-		BookInfoVO book = new BookInfoVO();
+		Long mem_num = (long) 1;
+		String isbn = "12345678";
 		
-		appraisal.setMem_num(member.getMem_num());
-		appraisal.setIsbn(book.getIsbn());
+		
+		appraisalService.memberInfo(mem_num);
+		appraisalService.bookDetail(isbn);
+		
+//		appraisal.setMem_num(member.getMem_num());
+//		
+//		System.out.println(member.getMem_num());
+//		
+//		appraisal.setIsbn(book.getIsbn());
+//		
+//		System.out.println(book.getIsbn());
+		
 		appraisal.setStar(appraisalCmd.getStar());
 		appraisal.setStart_date(appraisalCmd.getStart_date());
 		appraisal.setEnd_date(appraisalCmd.getEnd_date());

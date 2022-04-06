@@ -23,10 +23,9 @@
 	
 	
 	
-	
-<!-- 	<select id="memberInfo" parameterType="Long" resultType="memberInfo"> -->
-<!-- 		SELECT * FROM member WHERE mem_num=#{mem_num, jdbcType=INT} -->
-<!-- 	</select> -->
+	<select id="memberInfo" parameterType="Long" resultType="member">
+		SELECT * FROM member WHERE mem_num=#{mem_num}
+	</select>
 	
 	
 
