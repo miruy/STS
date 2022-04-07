@@ -81,6 +81,7 @@
 			</tr>
 		</table>
 
+		<input type="hidden" name="isbn" value="${book.isbn}">
 		<input type="submit" value="도서 평가 등록">
 	</form>
 

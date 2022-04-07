@@ -14,12 +14,13 @@
 	</select>
 	
 	<insert id="writeComment" parameterType="appraisal">
-		INSERT INTO appraisal (mem_num, appraisal_num, star, book_comment, start_date, end_date, co_prv)
-		VALUES(#{mem_num}, appraisal_SEQ.nextval, #{star}, #{book_comment}, #{start_date}, #{end_date}, #{co_prv})
+		INSERT INTO appraisal (appraisal_num, star, book_comment, start_date, end_date, co_prv, mem_num, isbn)
+		VALUES(appraisal_SEQ.nextval, #{star}, #{book_comment}, #{start_date}, #{end_date}, #{co_prv}, #{mem_num}, #{isbn})
 		<selectKey keyProperty="mem_num" resultType="Long">
 			SELECT NVL(MAX(mem_num), 0) FROM member
 		</selectKey>
 	</insert>
+
 	
 	
 	

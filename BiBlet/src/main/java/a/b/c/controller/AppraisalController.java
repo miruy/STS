@@ -66,35 +66,28 @@ public class AppraisalController {
 
 	// 평가(코멘트)작성
 	@PostMapping(value = "/read/{isbn}")
-	public String writComment(@ModelAttribute("commentCmd")AppraisalCommand appraisalCmd, Model model) {
+	public String writComment(AppraisalVO appraisals, Model model) {
 		AppraisalVO appraisal = new AppraisalVO();
 		MemberVO member = new MemberVO();
 		
-		Long mem_num = (long) 1;
-		
+		Long mem_num = (long) 1;	//테스트용 회원번호 삽입
 		member.setMem_num(mem_num);
-		
+
+		appraisal.setStar(appraisals.getStar());
+//		System.out.println(appraisal.getStar());		
+		appraisal.setBook_comment(appraisals.getBook_comment());
+//		System.out.println(appraisal.getBook_comment());		
+		appraisal.setStart_date(appraisals.getStart_date());
+//		System.out.println(appraisal.getStart_date());		
+		appraisal.setEnd_date(appraisals.getEnd_date());
+//		System.out.println(appraisal.getEnd_date());		
+		appraisal.setCo_prv(appraisals.getCo_prv());
+//		System.out.println(appraisal.getCo_prv());
 		appraisal.setMem_num(member.getMem_num());
-		System.out.println(member.getMem_num());
-		
-		appraisal.setStar(appraisalCmd.getStar());
-		System.out.println(appraisal.getStar());
-		
-		appraisal.setBook_comment(appraisalCmd.getBook_comment());
-		System.out.println(appraisal.getBook_comment());
-		
-		appraisal.setStart_date(appraisalCmd.getStart_date());
-		System.out.println(appraisal.getStart_date());
-		
-		appraisal.setEnd_date(appraisalCmd.getEnd_date());
-		System.out.println(appraisal.getEnd_date());
-		
-		appraisal.setCo_prv(appraisalCmd.getCo_prv());
-		System.out.println(appraisal.getCo_prv());
-		
-		
+//		System.out.println(member.getMem_num());
+		appraisal.setIsbn(appraisals.getIsbn());
+//		System.out.println(appraisal.getIsbn());
 		appraisalService.writeComment(appraisal);
-		
 		return "myComment";
 	}
 	
