@@ -4,9 +4,6 @@ import java.util.Date;
 
 public class BookInfoVO {
 
-	// 필드 선언시 컬럼 명과 동일하게 소문자로 작성하기
-
-//	private Long book_num; // 도서번호(시퀀스)
 	private String isbn; // 일련번호(PK)
 	private String book_name; // 도서 이름
 	private String publisher; // 출판사
@@ -22,7 +19,7 @@ public class BookInfoVO {
 
 	public BookInfoVO(String isbn, String book_name, String publisher, String author, Date produc_year,
 			int book_page, String book_category, String age_grade, String book_sum, String book_cover) {
-//		this.book_num = book_num;
+
 		this.isbn = isbn;
 		this.book_name = book_name;
 		this.publisher = publisher;
@@ -34,14 +31,6 @@ public class BookInfoVO {
 		this.book_sum = book_sum;
 		this.book_cover = book_cover;
 	}
-
-//	public Long getBook_num() {
-//		return book_num;
-//	}
-//
-//	public void setBook_num(Long book_num) {
-//		this.book_num = book_num;
-//	}
 
 	public String getIsbn() {
 		return isbn;
