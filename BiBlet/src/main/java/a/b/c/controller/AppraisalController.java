@@ -53,20 +53,20 @@ public class AppraisalController {
 		return "bookInfoList";
 	}
 
-	// 도서 정보 상세보기
-	@GetMapping(value = "/read/{isbn}")
-	public String bookDetail(@PathVariable("isbn") String isbn, Model model) {
+
+	// 도서상세보기 및 평가(코멘트)작성
+	@RequestMapping(value = "/read/{isbn}")
+	public String detailAndwriteComment(@PathVariable("isbn") String isbn, AppraisalVO appraisals, Model model) {
+		
+		//도서 상세보기
 		BookInfoVO book = appraisalService.bookDetail(isbn);
 		if (book == null) {
 			return "bookInfoList";
 		}
 		model.addAttribute("book", book);
-		return "detailAndComment";
-	}
+		
 
-	// 평가(코멘트)작성
-	@PostMapping(value = "/read/{isbn}")
-	public String writComment(AppraisalVO appraisals, Model model) {
+		//평가 작성
 		AppraisalVO appraisal = new AppraisalVO();
 		MemberVO member = new MemberVO();
 		
@@ -88,7 +88,7 @@ public class AppraisalController {
 		appraisal.setIsbn(appraisals.getIsbn());
 //		System.out.println(appraisal.getIsbn());
 		appraisalService.writeComment(appraisal);
-		return "myComment";
+		return "detailAndComment";
 	}
 	
 
