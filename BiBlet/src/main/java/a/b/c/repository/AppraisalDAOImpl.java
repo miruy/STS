@@ -1,6 +1,5 @@
 package a.b.c.repository;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -45,18 +44,11 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 		sqlSessionTemplate.insert("writeComment", appraisal);
 	}
 
-	// 회원(한명) 정보 보기
-	@SuppressWarnings("unlikely-arg-type")
+	//해당 도서의 대한 모든 평가 불러오기
 	@Override
-	public List<AppraisalVO> findCommentByMember(Long mem_num, String isbn) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("mem_num", mem_num);
-		map.put("isbn", isbn);	
-		
-		System.out.println("mem_num : "+ map.get(mem_num));
-		System.out.println("isbn : "+ map.get(isbn));
-		
-		return sqlSessionTemplate.selectList("findCommentByMember", map);
+	public List<AppraisalVO> findAllComment(String isbn) {
+		System.out.println(isbn);
+		return sqlSessionTemplate.selectList("findAllComment", isbn);
 	}
 
 }

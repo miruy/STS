@@ -24,8 +24,8 @@
 	
 	
 	
-	<select id="findCommentByMember" parameterType="HashMap" resultType="appraisal">
-		SELECT * FROM appraisal WHERE mem_num=#{mem_num} AND isbn=#{isbn, jdbcType=VARCHAR}
+	<select id="findAllComment" parameterType="String" resultType="appraisal">
+		SELECT book_comment FROM appraisal WHERE isbn=#{isbn, jdbcType=VARCHAR}
 	</select>
 	
 	

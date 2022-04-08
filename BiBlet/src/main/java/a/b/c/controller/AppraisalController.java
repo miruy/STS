@@ -1,5 +1,6 @@
 package a.b.c.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -8,14 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import a.b.c.HomeController;
-import a.b.c.model.AppraisalCommand;
 import a.b.c.model.AppraisalVO;
 import a.b.c.model.BookInfoVO;
 import a.b.c.model.MemberVO;
@@ -36,19 +34,19 @@ public class AppraisalController {
 	public String findAllBook(Model model) {
 		List<BookInfoVO> books = appraisalService.findAllBook();
 
-//		DB에서 불러온 데이터 확인용
-		for (BookInfoVO book : books) {
-			logger.debug("isbn:" + book.getIsbn());
-			logger.debug("Book_name:" + book.getBook_name());
-			logger.debug("Publisher:" + book.getPublisher());
-			logger.debug("Author:" + book.getAuthor());
-			// logger.debug("Produc_year:"+book.getProduc_year().toString());
-			logger.debug("Book_page:" + Integer.toString(book.getBook_page()));
-			logger.debug("Book_category:" + book.getBook_category());
-			logger.debug("Age_grade:" + book.getAge_grade());
-			logger.debug("Book_sum:" + book.getBook_sum());
-			logger.debug("Book_cover:" + book.getBook_cover());
-		}
+////		DB에서 불러온 데이터 확인용
+//		for (BookInfoVO book : books) {
+//			logger.debug("isbn:" + book.getIsbn());
+//			logger.debug("Book_name:" + book.getBook_name());
+//			logger.debug("Publisher:" + book.getPublisher());
+//			logger.debug("Author:" + book.getAuthor());
+//			// logger.debug("Produc_year:"+book.getProduc_year().toString());
+//			logger.debug("Book_page:" + Integer.toString(book.getBook_page()));
+//			logger.debug("Book_category:" + book.getBook_category());
+//			logger.debug("Age_grade:" + book.getAge_grade());
+//			logger.debug("Book_sum:" + book.getBook_sum());
+//			logger.debug("Book_cover:" + book.getBook_cover());
+//		}
 		model.addAttribute("books", books);
 		return "bookInfoList";
 	}
@@ -65,10 +63,14 @@ public class AppraisalController {
 		}
 		model.addAttribute("book", book);
 
+		
+		// 해당 도서의 대한 모든 평가 불러오기
+		List<AppraisalVO> comments = appraisalService.findAllComment(isbn);
+		model.addAttribute("comments", comments);
+		
 		// 평가 작성
 		AppraisalVO appraisal = new AppraisalVO();
 		MemberVO member = new MemberVO();
-
 		member.setMem_num(mem_num);
 
 		appraisal.setStar(appraisals.getStar());
@@ -86,22 +88,16 @@ public class AppraisalController {
 		appraisal.setIsbn(isbn);
 //		System.out.println(appraisal.getIsbn());
 		appraisalService.writeComment(appraisal);
-	}
 
-	 // 해당 도서에 작성된 모든 평가 불러오기
-	 public List<AppraisalVO> {
-		
-		commentByMembers = appraisalService.findCommentByMember(member.getMem_num(), isbn)
-		for (AppraisalVO test : commentByMembers) {
-			logger.debug("member.getMem_num():" + test.getMem_num());
-			logger.debug("isbn:" + test.getIsbn());
-		}
-
-		System.out.println(member.getMem_num());
-		System.out.println(isbn);
-		model.addAttribute("members", commentByMembers);
 		return "detailAndComment";
 	}
-}
+
+	// 해당 도서에 작성된 모든 평가 불러오기
+//	@RequestMapping(value = "/read/{isbn}")
+//	public String findAllComment(String isbn, Model model) {
+//		List<AppraisalVO> comments = appraisalService.findAllComment(isbn);
+//		model.addAttribute("comments", comments);
+//		return "detailAndComment";
+//	}
 
 }
