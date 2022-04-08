@@ -68,6 +68,10 @@ public class AppraisalController {
 		List<AppraisalVO> comments = appraisalService.findAllComment(isbn);
 		model.addAttribute("comments", comments);
 		
+		for(AppraisalVO test : comments) {
+			logger.debug("isbn:" + test.getIsbn());
+		}
+		
 		// 평가 작성
 		AppraisalVO appraisal = new AppraisalVO();
 		MemberVO member = new MemberVO();
