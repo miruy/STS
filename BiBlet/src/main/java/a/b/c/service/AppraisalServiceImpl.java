@@ -40,10 +40,10 @@ public class AppraisalServiceImpl implements AppraisalService {
 	}
 	
 	
-	//회원(한명) 정보 보기 
+	//회원(한명)이 작성한 평가 불러오기
 	@Override
-	public MemberVO memberInfo(Long mem_num) {
-		return appraisalDAO.memberInfo(mem_num);
+	public List<AppraisalVO> findCommentByMember(Long mem_num, String isbn) {
+		return appraisalDAO.findCommentByMember(mem_num, isbn);
 	}
 }
 

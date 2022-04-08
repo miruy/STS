@@ -10,7 +10,6 @@ public interface AppraisalDAO {
 	public List<BookInfoVO> findAllBook();	//전체 도서 목록 
 	public BookInfoVO bookDetail(String isbn);	//도서 상세보기
 	public void writeComment(AppraisalVO appraisal);	//평가(코멘트) 작성
-	
-	public MemberVO memberInfo(Long mem_num);	//회원(한명) 정보 보기 
+	public List<AppraisalVO> findCommentByMember(Long mem_num, String isbn);	//회원(한명) 정보 보기 
 	
 }

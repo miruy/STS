@@ -37,40 +37,38 @@ public class AppraisalController {
 		List<BookInfoVO> books = appraisalService.findAllBook();
 
 //		DB에서 불러온 데이터 확인용
-//		for(BookInfoVO book : books) {
-//			logger.debug("isbn:"+book.getIsbn());
-//			logger.debug("Book_name:"+book.getBook_name());
-//			logger.debug("Publisher:"+book.getPublisher());
-//			logger.debug("Author:"+book.getAuthor());
-//			//logger.debug("Produc_year:"+book.getProduc_year().toString());
-//			logger.debug("Book_page:"+Integer.toString(book.getBook_page()));
-//			logger.debug("Book_category:"+book.getBook_category());
-//			logger.debug("Age_grade:"+book.getAge_grade());
-//			logger.debug("Book_sum:"+book.getBook_sum());
-//			logger.debug("Book_cover:"+book.getBook_cover());	
-//		}
+		for (BookInfoVO book : books) {
+			logger.debug("isbn:" + book.getIsbn());
+			logger.debug("Book_name:" + book.getBook_name());
+			logger.debug("Publisher:" + book.getPublisher());
+			logger.debug("Author:" + book.getAuthor());
+			// logger.debug("Produc_year:"+book.getProduc_year().toString());
+			logger.debug("Book_page:" + Integer.toString(book.getBook_page()));
+			logger.debug("Book_category:" + book.getBook_category());
+			logger.debug("Age_grade:" + book.getAge_grade());
+			logger.debug("Book_sum:" + book.getBook_sum());
+			logger.debug("Book_cover:" + book.getBook_cover());
+		}
 		model.addAttribute("books", books);
 		return "bookInfoList";
 	}
 
-
 	// 도서상세보기 및 평가(코멘트)작성
 	@RequestMapping(value = "/read/{isbn}")
 	public String detailAndwriteComment(@PathVariable("isbn") String isbn, AppraisalVO appraisals, Model model) {
-		
-		//도서 상세보기
+		Long mem_num = (long) 1; // 테스트용 회원번호 삽입
+
+		// 도서 상세보기
 		BookInfoVO book = appraisalService.bookDetail(isbn);
 		if (book == null) {
 			return "bookInfoList";
 		}
 		model.addAttribute("book", book);
-		
 
-		//평가 작성
+		// 평가 작성
 		AppraisalVO appraisal = new AppraisalVO();
 		MemberVO member = new MemberVO();
-		
-		Long mem_num = (long) 1;	//테스트용 회원번호 삽입
+
 		member.setMem_num(mem_num);
 
 		appraisal.setStar(appraisals.getStar());
@@ -85,23 +83,25 @@ public class AppraisalController {
 //		System.out.println(appraisal.getCo_prv());
 		appraisal.setMem_num(member.getMem_num());
 //		System.out.println(member.getMem_num());
-		appraisal.setIsbn(appraisals.getIsbn());
+		appraisal.setIsbn(isbn);
 //		System.out.println(appraisal.getIsbn());
 		appraisalService.writeComment(appraisal);
+	}
+
+	 // 해당 도서에 작성된 모든 평가 불러오기
+	 public List<AppraisalVO> {
+		
+		commentByMembers = appraisalService.findCommentByMember(member.getMem_num(), isbn)
+		for (AppraisalVO test : commentByMembers) {
+			logger.debug("member.getMem_num():" + test.getMem_num());
+			logger.debug("isbn:" + test.getIsbn());
+		}
+
+		System.out.println(member.getMem_num());
+		System.out.println(isbn);
+		model.addAttribute("members", commentByMembers);
 		return "detailAndComment";
 	}
-	
-
 }
 
-
-
-
-
-
-
-
-
-
-
-
+}
