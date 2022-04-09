@@ -27,7 +27,7 @@
 		<!-- SELECT book_comment FROM appraisal WHERE isbn=#{isbn, jdbcType=VARCHAR} -->
 		SELECT book_comment FROM appraisal WHERE isbn=#{isbn}
 	</select>
-
+	SELECT [COLUMN명] ... FROM [TABLE-A명] INNER JOIN [TABLE-B명] ON [조건]; 
 
 
 
