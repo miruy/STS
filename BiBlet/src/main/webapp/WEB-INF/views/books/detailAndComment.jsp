@@ -50,13 +50,11 @@
 				<th>별점</th>
 				<td>
 					<div class="star-rating space-x-4 mx-auto">
-						<input type="radio" id="1-stars" name="star" value="5"
-							v-model="ratings" />1점(지울 예정) <input type="radio" id="2-stars"
-							name="star" value="4" v-model="ratings" />2점(지울 예정) <input
-							type="radio" id="3-stars" name="star" value="3" v-model="ratings" />3점(지울
-						예정) <input type="radio" id="4-stars" name="star" value="2"
-							v-model="ratings" />4점(지울 예정) <input type="radio" id="5-star"
-							name="star" value="1" v-model="ratings" />5점(지울 예정)
+						<input type="radio" id="1star" name="star" value=5 v-model="ratings" />1점(지울 예정) 
+						<input type="radio" id="2star" name="star" value=4 v-model="ratings" />2점(지울 예정) 
+						<input type="radio" id="3star" name="star" value=3 v-model="ratings" />3점(지울 예정) 
+						<input type="radio" id="4star" name="star" value=2 v-model="ratings" />4점(지울 예정) 
+						<input type="radio" id="5star" name="star" value=1 v-model="ratings" />5점(지울 예정)
 					</div>
 				</td>
 			</tr>

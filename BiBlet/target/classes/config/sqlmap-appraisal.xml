@@ -13,15 +13,15 @@
 		SELECT * FROM bookinfo WHERE isbn=#{isbn, jdbcType=VARCHAR}
 	</select>
 	
-	<insert id="writeComment" parameterType="String">
+	<insert id="writeComment" parameterType="appraisal">
 	INSERT INTO appraisal(appraisal_num, star, book_comment, start_date, end_date, co_prv, mem_num, isbn)
 	VALUES(appraisal_SEQ.nextval, #{star}, #{book_comment}, #{start_date}, #{end_date}, #{co_prv}, #{mem_num}, #{isbn})
 	</insert>
 	
 	
-	<select id="allCommentByBookCmd" parameterType="String" resultType="allCommentByBookCmd">
-	<!-- MEMBER,APPRAISAL 조인  -->
-	</select>
+<!-- 	<select id="allCommentByBookCmd" parameterType="String" resultType="allCommentByBookCmd"> -->
+<!-- 	 MEMBER,APPRAISAL 조인  --> 
+<!-- 	</select> -->
 
 
 	<!-- <select id="search" parameterType="HashMap" resultType="book"> -->
