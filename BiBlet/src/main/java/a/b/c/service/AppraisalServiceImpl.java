@@ -46,6 +46,12 @@ public class AppraisalServiceImpl implements AppraisalService {
 	public List<allCommentByBookCmd> findAllComment(String isbn) {
 		return appraisalDAO.findAllComment(isbn);
 	}
+	
+	//해당 도서의 대한 평가 갯수
+	@Override
+	public allCommentByBookCmd commentCount(String isbn) {
+		return appraisalDAO.commentCount(isbn);
+	}
 }
 
 

@@ -1,6 +1,7 @@
 package a.b.c.model;
 
 public class allCommentByBookCmd {
+	private Long appraisal_num;	// 평가 번호
 	private int star; // 별점
 	private String book_comment; // 코멘트(평가)
 	private String start_date; // 도서 구독 시작 날짜
@@ -10,15 +11,23 @@ public class allCommentByBookCmd {
 	
 	public allCommentByBookCmd() {}
 
-	public allCommentByBookCmd(int star, String book_comment, String start_dater,
+	public allCommentByBookCmd(Long appraisal_num, int star, String book_comment, String start_dater,
 			String end_date, String mem_id, String mem_pic) {
-
+		this.appraisal_num = appraisal_num;
 		this.star = star;
 		this.book_comment = book_comment;
 		this.start_date = start_dater;
 		this.end_date = end_date;
 		this.mem_id = mem_id;
 		this.mem_pic = mem_pic;
+	}
+
+	public Long getAppraisal_num() {
+		return appraisal_num;
+	}
+
+	public void setAppraisal_num(Long appraisal_num) {
+		this.appraisal_num = appraisal_num;
 	}
 
 	public int getStar() {
