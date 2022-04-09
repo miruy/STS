@@ -35,7 +35,7 @@
 	WHERE bookinfo.isbn=#{isbn} AND appraisal.co_prv='공개'
 	</select>
 	
-	<select id="commentCount" parameterType="String" resultType="allCommentByBookCmd">
+	<select id="commentCount" parameterType="String" resultType="Integer">
 	SELECT 
 	COUNT(appraisal.book_comment)
 	FROM appraisal

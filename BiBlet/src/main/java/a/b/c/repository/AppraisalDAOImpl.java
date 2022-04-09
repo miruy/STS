@@ -53,7 +53,7 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 
 	//해당 도서의 대한 평가 갯수
 	@Override
-	public allCommentByBookCmd commentCount(String isbn) {
+	public int commentCount(String isbn) {
 		return sqlSessionTemplate.selectOne("commentCount", isbn);
 	}
 }

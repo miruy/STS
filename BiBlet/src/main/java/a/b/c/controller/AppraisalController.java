@@ -65,8 +65,8 @@ public class AppraisalController {
 		model.addAttribute("book", book);
 		
 		//해당 도서의 대한 평가 갯수
-		allCommentByBookCmd commentCount = appraisalService.commentCount(isbn);
-		logger.debug("count : " + commentCount);
+		int commentCount = appraisalService.commentCount(isbn);
+//		logger.debug("count : " + commentCount);
 		model.addAttribute("commentCount", commentCount);
 		
 		//해당 도서의 대한 모든 평가 불러오기

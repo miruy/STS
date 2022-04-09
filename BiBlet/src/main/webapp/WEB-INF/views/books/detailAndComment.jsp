@@ -85,32 +85,23 @@
 	
 	<br>
 	
-	<c:if test="${empty commentCount}">
-	널이야
-	</c:if>
 	<c:if test="${!empty commentCount}">
-		<table border="1">
-			<tr>
-				<td>평가 총 개수 : ${commentCount}</td>
-			<tr>
-		</table>	
+		평가 총 개수 : ${commentCount}	
 	</c:if>
 	
 	<br>
 	
 	<c:if test="${!empty commentsByMembers}">
 		<c:forEach var="commentsByMember" items="${commentsByMembers}">
-			<table border="1">
-				<tr>
-					<td>평가 번호 : ${commentsByMember.appraisal_num}</td>
-					<td>회원 : ${commentsByMember.mem_id}</td>
-					<td>프로필 : ${commentsByMember.mem_pic}</td>
-					<td>별점 : ${commentsByMember.star}</td>
-					<td>시작날짜 : ${commentsByMember.start_date}</td>
-					<td>다 읽은 날짜 : ${commentsByMember.end_date}</td>
-					<td>평가 : ${commentsByMember.book_comment}</td>
-				</tr>
-			</table>
+			<p>
+			평가 번호 : ${commentsByMember.appraisal_num}
+			회원 : ${commentsByMember.mem_id}
+			프로필 : ${commentsByMember.mem_pic}
+			별점 : ${commentsByMember.star}
+			시작날짜 : ${commentsByMember.start_date}
+			다 읽은 날짜 : ${commentsByMember.end_date}
+			평가 : ${commentsByMember.book_comment}
+			</p>
 		</c:forEach>
 	</c:if>
 
