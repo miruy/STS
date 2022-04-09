@@ -9,24 +9,19 @@
 		SELECT * FROM bookinfo ORDER BY isbn
 	</select>
 
-	<select id="bookDetail" parameterType="String"
-		resultType="bookInfo">
+	<select id="bookDetail" parameterType="String" resultType="bookInfo">
 		SELECT * FROM bookinfo WHERE isbn=#{isbn, jdbcType=VARCHAR}
 	</select>
-
-	<insert id="writeComment" parameterType="appraisal">
-		INSERT INTO appraisal
-		(appraisal_num, star, book_comment, start_date, end_date, co_prv,
-		mem_num, isbn)
-		VALUES(appraisal_SEQ.nextval, #{star}, #{book_comment},
-		#{start_date}, #{end_date}, #{co_prv}, #{mem_num}, #{isbn})
+	
+	<insert id="writeComment" parameterType="String">
+	INSERT INTO appraisal(appraisal_num, star, book_comment, start_date, end_date, co_prv, mem_num, isbn)
+	VALUES(appraisal_SEQ.nextval, #{star}, #{book_comment}, #{start_date}, #{end_date}, #{co_prv}, #{mem_num}, #{isbn})
 	</insert>
-
-	<select id="findAllComment" parameterType="String" resultType="appraisal">
-		SELECT book_comment FROM appraisal WHERE isbn=#{isbn, jdbcType=VARCHAR}
-<!-- 		SELECT book_comment FROM appraisal INNER JOIN bookinfo ON isbn=#{isbn} -->
+	
+	
+	<select id="allCommentByBookCmd" parameterType="String" resultType="allCommentByBookCmd">
+	<!-- MEMBER,APPRAISAL 조인  -->
 	</select>
-
 
 
 	<!-- <select id="search" parameterType="HashMap" resultType="book"> -->

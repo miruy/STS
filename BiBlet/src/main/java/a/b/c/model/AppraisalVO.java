@@ -3,7 +3,7 @@ package a.b.c.model;
 public class AppraisalVO {
 
 	private Long appraisal_num; // 평가 번호(시퀀스)
-	private String star; // 별점
+	private int star; // 별점
 	private String book_comment; // 코멘트(평가)
 	private String start_date; // 도서 구독 시작 날짜
 	private String end_date; // 도서 구독 완료 날짜
@@ -13,7 +13,7 @@ public class AppraisalVO {
 
 	public AppraisalVO() {}
 
-	public AppraisalVO(Long appraisal_num, String star, String book_comment, String start_dater,
+	public AppraisalVO(Long appraisal_num, int star, String book_comment, String start_dater,
 			String end_date, String co_prv, Long mem_num, String isbn) {
 
 		this.appraisal_num = appraisal_num;
@@ -34,11 +34,11 @@ public class AppraisalVO {
 		this.appraisal_num = appraisal_num;
 	}
 
-	public String getStar() {
+	public int getStar() {
 		return star;
 	}
 
-	public void setStar(String star) {
+	public void setStar(int star) {
 		this.star = star;
 	}
 

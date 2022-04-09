@@ -51,9 +51,9 @@ public class AppraisalController {
 		return "bookInfoList";
 	}
 
-	// 도서상세보기 및 평가(코멘트)작성
+	// 도서상세보기 
 	@RequestMapping(value = "/read/{isbn}")
-	public String detailAndwriteComment(@PathVariable("isbn") String isbn, AppraisalVO appraisals, Model model) {
+	public String bookDetail(@PathVariable("isbn") String isbn, Model model) {
 		Long mem_num = (long) 1; // 테스트용 회원번호 삽입
 
 		// 도서 상세보기
@@ -62,38 +62,34 @@ public class AppraisalController {
 			return "bookInfoList";
 		}
 		model.addAttribute("book", book);
-
-		
-		// 해당 도서의 대한 모든 평가 불러오기
-		List<AppraisalVO> comments = appraisalService.findAllComment(isbn);
-		model.addAttribute("comments", comments);
-		
-		for(AppraisalVO test : comments) {
-			logger.debug("isbn:" + test.getIsbn());
-		}
-		
-		// 평가 작성
-		AppraisalVO appraisal = new AppraisalVO();
-		MemberVO member = new MemberVO();
-		member.setMem_num(mem_num);
-
-		appraisal.setStar(appraisals.getStar());
-//		System.out.println(appraisal.getStar());		
-		appraisal.setBook_comment(appraisals.getBook_comment());
-//		System.out.println(appraisal.getBook_comment());		
-		appraisal.setStart_date(appraisals.getStart_date());
-//		System.out.println(appraisal.getStart_date());		
-		appraisal.setEnd_date(appraisals.getEnd_date());
-//		System.out.println(appraisal.getEnd_date());		
-		appraisal.setCo_prv(appraisals.getCo_prv());
-//		System.out.println(appraisal.getCo_prv());
-		appraisal.setMem_num(member.getMem_num());
-//		System.out.println(member.getMem_num());
-		appraisal.setIsbn(isbn);
-//		System.out.println(appraisal.getIsbn());
-		appraisalService.writeComment(appraisal);
-
 		return "detailAndComment";
+	}
+	
+	//평가 작성
+	@RequestMapping(value = "/read/{isbn}")
+	public void writeComment(@PathVariable("isbn") String isbn, AppraisalVO appraisal, Model model) {		
+
+//		AppraisalVO appraisal = new AppraisalVO();
+//		MemberVO member = new MemberVO();
+//		member.setMem_num(mem_num);
+//
+//		appraisal.setStar(appraisals.getStar());
+////		System.out.println(appraisal.getStar());		
+//		appraisal.setBook_comment(appraisals.getBook_comment());
+////		System.out.println(appraisal.getBook_comment());		
+//		appraisal.setStart_date(appraisals.getStart_date());
+////		System.out.println(appraisal.getStart_date());		
+//		appraisal.setEnd_date(appraisals.getEnd_date());
+////		System.out.println(appraisal.getEnd_date());		
+//		appraisal.setCo_prv(appraisals.getCo_prv());
+////		System.out.println(appraisal.getCo_prv());
+//		appraisal.setMem_num(member.getMem_num());
+////		System.out.println(member.getMem_num());
+//		appraisal.setIsbn(isbn);
+////		System.out.println(appraisal.getIsbn());
+//		appraisalService.writeComment(appraisal);
+//
+//		return "detailAndComment";
 	}
 
 	// 해당 도서에 작성된 모든 평가 불러오기
@@ -102,6 +98,16 @@ public class AppraisalController {
 //		List<AppraisalVO> comments = appraisalService.findAllComment(isbn);
 //		model.addAttribute("comments", comments);
 //		return "detailAndComment";
+	
+	
+////	List<AppraisalVO> comments = appraisalService.findAllComment(isbn);
+////	model.addAttribute("comments", comments);
+////	
+////	for(AppraisalVO test : comments) {
+////		logger.debug("isbn:" + test.getIsbn());
+////	}
+	
+	
 //	}
 
 }
