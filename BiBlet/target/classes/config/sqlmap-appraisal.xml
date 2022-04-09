@@ -6,8 +6,7 @@
 	<!-- 아래 예시와 다르게 테이블 명 / 컬럼을 대문자로, 쿼리문장을 소문자로 작성하기 -->
 
 	<select id="findAllBook" resultType="bookInfo">
-		SELECT * FROM bookinfo ORDER
-		BY isbn
+		SELECT * FROM bookinfo ORDER BY isbn
 	</select>
 
 	<select id="bookDetail" parameterType="String"
@@ -24,8 +23,8 @@
 	</insert>
 
 	<select id="findAllComment" parameterType="String" resultType="appraisal">
-		<!-- SELECT book_comment FROM appraisal WHERE isbn=#{isbn, jdbcType=VARCHAR} -->
-		SELECT book_comment FROM appraisal INNER JOIN bookinfo ON isbn=#{isbn}
+		SELECT book_comment FROM appraisal WHERE isbn=#{isbn, jdbcType=VARCHAR}
+<!-- 		SELECT book_comment FROM appraisal INNER JOIN bookinfo ON isbn=#{isbn} -->
 	</select>
 
 
