@@ -10,7 +10,22 @@
 <title>BiBlet 도서 상세/평가</title>
 </head>
 <body>
-
+	
+	
+	<form method="post">
+		<P>
+			검색 키워드 입력 : 
+			<select name="option">
+				<option value="title">제목</option>
+				<option value="author">저자</option>
+				<option value="pubcompany">출판사</option>
+			</select> 
+			
+			<input type="text" name="keyword" placeholder="제목, 저자 또는 출판사 검색" size=30> 
+			<a href=
+			"<c:url value="https://dapi.kakao.com/v3/search/book?target=${title}"/>">검색</a>
+		</P>
+	</form>
 
 	<c:if test="${!empty book}">
 		<table border="1">
