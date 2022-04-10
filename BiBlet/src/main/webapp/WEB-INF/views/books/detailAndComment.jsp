@@ -68,7 +68,7 @@
 				<th>구독 시작 날짜</th>
 				<td><input type="date" name="start_date" /></td>
 			</tr>
-
+ API 활용
 			<tr>
 				<th>구독 완료 날짜</th>
 				<td><input type="date" name="end_date" /></td>
