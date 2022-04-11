@@ -123,8 +123,8 @@ public class AppraisalController {
 	}
 
 
-	@PostMapping(produces ="application/json") 
-	public void bookSearch(@ModelAttribute("searchCmd")BookSearchCmd searchCmd, HttpServletResponse response) throws Exception {
+	@PostMapping(value="/list") 
+	public void bookSearch(@ModelAttribute("searchCmd")BookSearchCmd searchCmd, Model model, HttpServletResponse response) throws Exception {
 		
 		//결과를 담을 변수들 
 		String target = "";
@@ -137,8 +137,13 @@ public class AppraisalController {
 		}
 		logger.debug("target:" + target.toString());	//태스트
 		
-		String query = searchCmd.getKeyword();
-		logger.debug("target:" + query.toString());	//태스트	
+		String query = searchCmd.getQuery();
+		logger.debug("query:" + query.toString());	//태스트	
+		
+		
+		model.addAttribute("target", target);
+		model.addAttribute("query", query);
+		logger.debug(model.toString());
 		
 		StringBuffer result = new StringBuffer(); 
 		String strResult = "";
@@ -149,7 +154,7 @@ public class AppraisalController {
 		
 		// 요청파라미터 변수 인코딩
 		urlBuilder.append("?target=" + URLEncoder.encode(target, "UTF-8"));
-		urlBuilder.append("&query=" + query);
+//		urlBuilder.append("&query=" + query);
 //		urlBuilder.append("&type=json");
 		URL url = new URL(urlBuilder.toString());
 

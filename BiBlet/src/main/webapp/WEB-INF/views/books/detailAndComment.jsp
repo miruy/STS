@@ -10,9 +10,8 @@
 <title>BiBlet 도서 상세/평가</title>
 </head>
 <body>
-	
-<%-- 	<form method="post" commandName="searchCmd"> --%>
-		
+	<form method="get" action="/BiBlet/AppraisalPage/list">
+			<p>
 			검색 키워드 입력 : 
 			<select name="option">
 				<option value="title">제목</option>
@@ -20,16 +19,13 @@
 				<option value="publisher">출판사</option>
 			</select> 
 			
-			<input type="text" id="query" placeholder="제목, 저자 또는 출판사 검색" size=30> 
+			<input type="text" name="query" id="query" placeholder="제목, 저자 또는 출판사 검색" size=30> 
 			<button id="search">검색</button>
-<!-- 			<input type="submit" value="검색"> -->
-		<
-<%-- 	</form> --%>
- 
+ 			</p>
+ 			
     <div></div>
  
-    <script src="https://code.jquery.com/jquery-3.6.0.js"
-        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
  
     <script>
         $(document).ready(function () {
@@ -88,8 +84,8 @@
  
         
     </script>
+	</form>
 	
-
 	<c:if test="${!empty book}">
 		<table border="1">
 			<tr>

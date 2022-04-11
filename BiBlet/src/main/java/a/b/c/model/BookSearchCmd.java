@@ -2,7 +2,7 @@ package a.b.c.model;
 
 public class BookSearchCmd {
 	private String option;
-	private String keyword;
+	private String query;
 	
 	public String getOption() {
 		return option;
@@ -10,10 +10,11 @@ public class BookSearchCmd {
 	public void setOption(String option) {
 		this.option = option;
 	}
-	public String getKeyword() {
-		return keyword;
+	public String getQuery() {
+		return query;
 	}
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
+	public void setQuery(String query) {
+		this.query = query;
 	}
+	
 }
