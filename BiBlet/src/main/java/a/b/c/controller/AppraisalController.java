@@ -2,6 +2,7 @@ package a.b.c.controller;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -152,7 +153,7 @@ public class AppraisalController {
 			// 받아온 json데이터를 출력 가능한 상태로 변경 (기본값: false)
 			conn.setDoOutput(true);
 			
-			// 응답 데이터 받아오기
+			// 입력 스트림으로 응답 데이터 받아오기
 			BufferedReader rd;
 			if (conn.getResponseCode() >= 200 & conn.getResponseCode() <= 300) {
 				rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
@@ -173,7 +174,7 @@ public class AppraisalController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
 		// Response 형식 설정 -> JSON으로 데이터 보내기
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
