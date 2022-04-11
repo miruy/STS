@@ -7,8 +7,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>BiBlet 도서 전체 목록</title>
+<title>BiBlet 테스트용 메인 페이지</title>
 </head>
+
+
 <body>
 	 <c:if test="${!empty books}">
 		<table border="1">

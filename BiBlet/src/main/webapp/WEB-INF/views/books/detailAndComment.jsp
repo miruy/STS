@@ -11,21 +11,84 @@
 </head>
 <body>
 	
-	
-	<form method="post">
-		<P>
+<%-- 	<form method="post" commandName="searchCmd"> --%>
+		
 			검색 키워드 입력 : 
 			<select name="option">
 				<option value="title">제목</option>
 				<option value="author">저자</option>
-				<option value="pubcompany">출판사</option>
+				<option value="publisher">출판사</option>
 			</select> 
 			
-			<input type="text" name="keyword" placeholder="제목, 저자 또는 출판사 검색" size=30> 
-			<a href=
-			"<c:url value="https://dapi.kakao.com/v3/search/book?target=${title}"/>">검색</a>
-		</P>
-	</form>
+			<input type="text" id="query" placeholder="제목, 저자 또는 출판사 검색" size=30> 
+			<button id="search">검색</button>
+<!-- 			<input type="submit" value="검색"> -->
+		<
+<%-- 	</form> --%>
+ 
+    <div></div>
+ 
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+ 
+    <script>
+        $(document).ready(function () {
+            var pageNum = 1;
+ 
+            $("#search").click(function () {
+                $("div").html("");
+ 
+                $.ajax({
+                    method: "GET",
+                    url: "https://dapi.kakao.com/v3/search/book?target=title",
+                    data: { query: $("#query").val(), page: pageNum},
+                    headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"} 
+ 
+                })
+                .done(function (msg) {
+                    console.log(msg);
+                    for (var i = 0; i < 10; i++){
+                        $("div").append("<h2><a href='"+ msg.documents[i].url +"'>" + msg.documents[i].title + "</a></h2>");
+                        $("div").append("<strong>저자:</strong> " + msg.documents[i].authors + "<br>");
+                        $("div").append("<strong>출판사:</strong> " + msg.documents[i].publisher + "<br>");
+                        $("div").append("<strong>요약:</strong> " + msg.documents[i].contents + "...<br>");
+                        $("div").append("<img src='" + msg.documents[i].thumbnail + "'/><br>");
+                    }
+                });
+            })
+ 
+            $(window).scroll(function(){  
+ 
+                if ( Math.ceil($(window).scrollTop()) + $(window).height() >= $(document).height() ){
+                    pageNum++;
+ 
+ 
+                    $.ajax({
+                        method: "GET",
+                        url: "https://dapi.kakao.com/v3/search/book?target=title",
+                        data: { query: $("#query").val(),  page: pageNum},
+                        headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"} 
+ 
+                    })
+                    .done(function (msg) {
+                        console.log(msg);
+                        for (var i = 0; i < 10; i++){
+                            $("div").append("<h2><a href='"+ msg.documents[i].url +"'>" + msg.documents[i].title + "</a></h2>");
+                            $("div").append("<strong>저자:</strong> " + msg.documents[i].authors + "<br>");
+                            $("div").append("<strong>출판사:</strong> " + msg.documents[i].publisher + "<br>");
+                            $("div").append("<strong>요약:</strong> " + msg.documents[i].contents + "...<br>");
+                            $("div").append("<img src='" + msg.documents[i].thumbnail + "'/><br>");
+                        }
+                    });
+ 
+                }
+                
+            });
+        })
+ 
+        
+    </script>
+	
 
 	<c:if test="${!empty book}">
 		<table border="1">
