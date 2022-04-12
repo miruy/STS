@@ -1,6 +1,9 @@
 package a.b.c.controller;
 
-import java.io.PrintWriter;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -8,25 +11,23 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
-
-import com.google.gson.Gson;
 
 import a.b.c.HomeController;
 import a.b.c.model.AppraisalVO;
 import a.b.c.model.BookInfoVO;
 import a.b.c.model.MemberVO;
+import a.b.c.model.SearchCmd;
 import a.b.c.model.allCommentByBookCmd;
 import a.b.c.service.AppraisalService;
 
@@ -122,62 +123,85 @@ public class AppraisalController {
 		return "redirect:/AppraisalPage/read/{isbn}";
 	}
 
-	@RequestMapping(value = "/search/book", produces = "application/json")
-	public void jsonPasing(
-			@RequestParam(value = "target", required = false) String target,
-			@RequestParam(value = "query", required = false) String query, HttpServletResponse response)throws Exception {
+	@RequestMapping(value="/", produces = "application/json")
+	public void jsonPasing(@ModelAttribute("searchCmd")SearchCmd searchCmd, Model model)throws Exception {
+	
+		
+		final String base_url = "https://dapi.kakao.com/v3/search/book?target=title";
+		final String auth_key = "KakaoAK" + " 6f9ab74953bbcacc4423564a74af264e";
+		
+
+			/**
+			 *  REST API 호출하기
+			 */
+			URL url = null;
+			HttpURLConnection con= null;
+			JSONObject result = null;
+			StringBuilder sb = new StringBuilder();
+			try {
+				// URL 객채 생성 (BASE_URL)
+				url = new URL(base_url);
+				// URL을 참조하는 객체를 URLConnection 객체로 변환
+				con = (HttpURLConnection) url.openConnection();
+
+				// 커넥션 request 방식 "GET"으로 설정
+				con.setRequestMethod("GET");
+
+				// 커넥션 request 값 설정(key,value) 
+				con.setRequestProperty("Content-type", "application/json");
+				con.setRequestProperty("Authorization", auth_key);
+				// setRequestProperty (key,value) 다른 예시
+				// con.setRequestProperty("X-Auth-Token", AUTH_TOKEN);
+
+				// 받아온 JSON 데이터 출력 가능 상태로 변경 (default : false)
+				con.setDoOutput(true);
+
+				// 데이터 입력 스트림에 담기
+				BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+				while(br.ready()) {
+					sb.append(br.readLine());
+				}
+				con.disconnect();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+
+			/**
+			 *  JSON 데이터 파싱하기
+			 */
+			// JSONParser에 입력 스트림에 담은 JSON데이터(sb.toString())를 넣어 파싱한 다음 JSONObject로 반환한다.
+			
+				result = (JSONObject) new JSONParser().parse(sb.toString());
+				
+
+			// REST API 호출 상태 출력하기
+			StringBuilder out = new StringBuilder();
+			out.append(result.get("status") +" : " + result.get("status_message") +"\n");
+
+			// JSON데이터에서 "documents"라는 JSONObject를 가져온다.
+			JSONObject meta = (JSONObject) result.get("meta");
+			// JSONObject에서 Array데이터를 get하여 JSONArray에 저장한다.
+			JSONArray array = (JSONArray) meta.get("documents");
+
+			// 데이터 출력하기 (도서 제목만 우선꺼내기 테스트용 )
+			JSONObject tmp;
+			out.append("데이터 출력하기 \n");
+			for(int i=0; i<array.size(); i++) {
+				tmp = (JSONObject) array.get(i);
+				out.append("title("+i+") :"+ tmp.get("title") +"\n");
+
+				// movies[] 배열 안에 있는 genres[] 데이터 꺼내기
+//				JSONArray array2 = (JSONArray) tmp.get("genres");
+//				out.append("genres("+i+"): ");
+//				for(int j=0; j<array2.size(); j++) {
+//					out.append(array2.get(j));
+//					if(j!=array2.size()-1) {
+//						out.append(",");
+//					}
+//				}
+				out.append("\n");
+				out.append("\n");
+			}
+			System.out.println(out.toString());
 	}
-//		// 결과를 담을 변수들
-//		StringBuffer result = new StringBuffer();
-//		String strResult = "";
-//
-//		try {
-//			// URL을 문자열로 생성
-//			StringBuilder urlBuilder = new StringBuilder("https://dapi.kakao.com/v3/search/book");
-//			urlBuilder.append("?target=" + URLEncoder.encode(target, "UTF-8"));
-////			urlBuilder.append("&api_key=" + api_key);
-////			urlBuilder.append("&type=json");
-//			
-//			//만든 URL문자열로 URL객체 생성
-//			URL url = new URL(urlBuilder.toString());
-//			
-//			//웹을 통해 데이터를 주고 받는데 사용하며, openConnection()을 이용해 URL을 참조하는 객체를 conn에 저장  
-//			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-//
-//			// Request 방식 설정
-//			conn.setRequestMethod("GET");
-//			
-//			// Request 속성 설정(key,value)
-//			conn.setRequestProperty("Authorization", "KakaoAK 6f9ab74953bbcacc4423564a74af264e");
-//			conn.setRequestProperty("Content-Type", "application/json");
-//
-//			// 받아온 json데이터를 출력 가능한 상태로 변경 (기본값: false)
-//			conn.setDoOutput(true);
-//			
-//			// 입력 스트림으로 응답 데이터 받아오기
-//			BufferedReader rd;
-//			if (conn.getResponseCode() >= 200 & conn.getResponseCode() <= 300) {
-//				rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
-//
-//			} else {
-//				rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-//			}
-//
-//			String line;
-//
-//			while ((line = rd.readLine()) != null) {
-//				result.append(line);
-//			}
-//			rd.close();
-//			conn.disconnect();
-//			strResult = result.toString();
-//
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		// Response 형식 설정 -> JSON으로 데이터 보내기
-//		response.setContentType("application/json");
-//		response.setCharacterEncoding("UTF-8");
-//		response.getWriter().write(strResult);
 }

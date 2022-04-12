@@ -8,10 +8,11 @@ import java.text.ParseException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
 public class JsonPasing {
-	static final String BASE_URL = "https://dapi.kakao.com/v3/search/book";
-	static String AUTH_KEY = "KakaoAK" + " 6f9ab74953bbcacc4423564a74af264e";
-	public static void main(String[] args) throws ParseException {
+	static final String BASE_URLd = "https://dapi.kakao.com/v3/search/book";
+	static String AUTH_KEYd = "KakaoAK" + " 6f9ab74953bbcacc4423564a74af264e";
+	public static void main(String[] args) throws ParseException, org.json.simple.parser.ParseException {
 
 		/**
 		 *  REST API 호출하기
@@ -22,7 +23,7 @@ public class JsonPasing {
 		StringBuilder sb = new StringBuilder();
 		try {
 			// URL 객채 생성 (BASE_URL)
-			url = new URL(BASE_URL);
+			url = new URL(BASE_URLd);
 			// URL을 참조하는 객체를 URLConnection 객체로 변환
 			con = (HttpURLConnection) url.openConnection();
 
@@ -31,7 +32,7 @@ public class JsonPasing {
 
 			// 커넥션 request 값 설정(key,value) 
 			con.setRequestProperty("Content-type", "application/json");
-			con.setRequestProperty("Authorization", AUTH_KEY);
+			con.setRequestProperty("Authorization", AUTH_KEYd);
 			// setRequestProperty (key,value) 다른 예시
 			// con.setRequestProperty("X-Auth-Token", AUTH_TOKEN);
 
@@ -52,27 +53,25 @@ public class JsonPasing {
 		 *  JSON 데이터 파싱하기
 		 */
 		// JSONParser에 입력 스트림에 담은 JSON데이터(sb.toString())를 넣어 파싱한 다음 JSONObject로 반환한다.
-		try {
+		
 			result = (JSONObject) new JSONParser().parse(sb.toString());
-		} catch (org.json.simple.parser.ParseException e) {
-			e.printStackTrace();
-		}
+			
 
 		// REST API 호출 상태 출력하기
 		StringBuilder out = new StringBuilder();
 		out.append(result.get("status") +" : " + result.get("status_message") +"\n");
 
 		// JSON데이터에서 "documents"라는 JSONObject를 가져온다.
-		JSONObject documents = (JSONObject) result.get("documents");
+		JSONObject meta = (JSONObject) result.get("meta");
 		// JSONObject에서 Array데이터를 get하여 JSONArray에 저장한다.
-		JSONArray array = (JSONArray) documents.get("title");
+		JSONArray array = (JSONArray) meta.get("documents");
 
 		// 데이터 출력하기 (도서 제목만 우선꺼내기 테스트용 )
 		JSONObject tmp;
 		out.append("데이터 출력하기 \n");
 		for(int i=0; i<array.size(); i++) {
 			tmp = (JSONObject) array.get(i);
-			out.append("도서 제목("+i+") :"+ tmp.get("title") +"\n");
+			out.append("title("+i+") :"+ tmp.get("title") +"\n");
 
 			// movies[] 배열 안에 있는 genres[] 데이터 꺼내기
 //			JSONArray array2 = (JSONArray) tmp.get("genres");
