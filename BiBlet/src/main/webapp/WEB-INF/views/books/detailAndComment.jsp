@@ -30,11 +30,10 @@
     <script>
         $(document).ready(function () {
             var pageNum = 1;
-       //검색 버튼 클릭시 ajax실행
             	$.ajax({	//카카오 검색요청 / [요청]
                     method: "GET",
                     url: "https://dapi.kakao.com/v3/search/book",
-                    data: { query: $("#query").val(), page: pageNum},
+                    data: { query: "162203625", page: pageNum},
                     headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"} 
                 })
                 

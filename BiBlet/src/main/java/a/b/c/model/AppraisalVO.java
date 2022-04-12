@@ -4,26 +4,24 @@ public class AppraisalVO {
 
 	private Long appraisal_num; // 평가 번호(시퀀스)
 	private int star; // 별점
-	private String book_comment; // 코멘트(평가)
+	private String comment; // 코멘트(평가)
 	private String start_date; // 도서 구독 시작 날짜
 	private String end_date; // 도서 구독 완료 날짜
 	private String co_prv; // 코멘트 공개 여부
-	private Long mem_num; // 회원 번호(FK)
-	private String isbn; // 일련번호(FK)
+	private int book_status_num;	//상태번호FK
 
 	public AppraisalVO() {}
 
-	public AppraisalVO(Long appraisal_num, int star, String book_comment, String start_dater,
-			String end_date, String co_prv, Long mem_num, String isbn) {
+	public AppraisalVO(Long appraisal_num, int star, String comment, String start_dater,
+			String end_date, String co_prv, int book_status_num) {
 
 		this.appraisal_num = appraisal_num;
 		this.star = star;
-		this.book_comment = book_comment;
+		this.comment = comment;
 		this.start_date = start_dater;
 		this.end_date = end_date;
 		this.co_prv = co_prv;
-		this.mem_num = mem_num;
-		this.isbn = isbn;
+		this.book_status_num = book_status_num;
 	}
 
 	public Long getAppraisal_num() {
@@ -42,12 +40,12 @@ public class AppraisalVO {
 		this.star = star;
 	}
 
-	public String getBook_comment() {
-		return book_comment;
+	public String getComment() {
+		return comment;
 	}
 
-	public void setBook_comment(String book_comment) {
-		this.book_comment = book_comment;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	public String getStart_date() {
@@ -74,20 +72,11 @@ public class AppraisalVO {
 		this.co_prv = co_prv;
 	}
 
-	public Long getMem_num() {
-		return mem_num;
+	public int getBook_status_num() {
+		return book_status_num;
 	}
 
-	public void setMem_num(Long mem_num) {
-		this.mem_num = mem_num;
+	public void setBook_status_num(int book_status_num) {
+		this.book_status_num = book_status_num;
 	}
-
-	public String getIsbn() {
-		return isbn;
-	}
-
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
-
 }
