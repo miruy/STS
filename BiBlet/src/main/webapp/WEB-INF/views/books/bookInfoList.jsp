@@ -32,32 +32,7 @@
                     }
                 });
             })
-            
-            
-            var jsonStr = JSON.stringify(params); //params는 object
-            
-            ajaxJsonHeader : function (url, params, func){
-                $.ajaxSetup({
-                    headers: { "AJAX": "true" }
-                });
-                $.ajax({
-                    url: url,
-                    type: 'POST',
-                    data: params,
-                    dataType : 'json',
-                    contentType : "application/json; charset=UTF-8",
-                    async: false,
-                    success: function(returnData){
-                        func(returnData);
-                    },
-                });
-            });
-
-
-            출처: https://aljjabaegi.tistory.com/154 [알짜배기 프로그래머]
-            
-            
-            
+           
 				<!-- 무한 스크롤 -->
             $(window).scroll(function(){  
                 if ( Math.ceil($(window).scrollTop()) + $(window).height() >= $(document).height() ){
