@@ -25,68 +25,37 @@
  			
     <div></div>
  
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
- 
+	 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> 
+  <!-- 도서 검색 -->
     <script>
         $(document).ready(function () {
             var pageNum = 1;
- 
-            $("#search").click(function () {
-                $("div").html("");
- 
-                $.ajax({
+       //검색 버튼 클릭시 ajax실행
+            	$.ajax({	//카카오 검색요청 / [요청]
                     method: "GET",
-                    url: "https://dapi.kakao.com/v3/search/book?target=title",
+                    url: "https://dapi.kakao.com/v3/search/book",
                     data: { query: $("#query").val(), page: pageNum},
                     headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"} 
- 
                 })
-                .done(function (msg) {
-                    console.log(msg);
+                
+                .done(function (msg) {	//검색 결과 담기 / [응답]
+                	console.log(msg);
                     for (var i = 0; i < 10; i++){
-                        $("div").append("<h2><a href='"+ msg.documents[i].url +"'>" + msg.documents[i].title + "</a></h2>");
-                        $("div").append("<strong>저자:</strong> " + msg.documents[i].authors + "<br>");
-                        $("div").append("<strong>출판사:</strong> " + msg.documents[i].publisher + "<br>");
-                        $("div").append("<strong>요약:</strong> " + msg.documents[i].contents + "...<br>");
-                        $("div").append("<img src='" + msg.documents[i].thumbnail + "'/><br>");
+                        $("div").append("<img src='" + msg.documents[i].thumbnail + "'/><br>");		//표지
+                        $("div").append("<h2><a href='${pageContext.request.contextPath}/AppraisalPage/read/"+ msg.documents[i].isbn.slice(0, 10)+"'>" + msg.documents[i].title + "</a></h2>");	//제목
+                        $("div").append("<strong>저자:</strong> " + msg.documents[i].authors + "<br>");		//저자	
+                        $("div").append("<strong>출판사:</strong> " + msg.documents[i].publisher + "<br>");		//출판사
+                        $("div").append("<strong>줄거리:</strong> " + msg.documents[i].contents + "...<br>");		//줄거리
+                    	$("div").append("<strong>일련번호:</strong>" + msg.documents[i].isbn + "<br>");	//일련번호
                     }
                 });
-            })
- 
-            $(window).scroll(function(){  
- 
-                if ( Math.ceil($(window).scrollTop()) + $(window).height() >= $(document).height() ){
-                    pageNum++;
- 
- 
-                    $.ajax({
-                        method: "GET",
-                        url: "https://dapi.kakao.com/v3/search/book?target=title",
-                        data: { query: $("#query").val(),  page: pageNum},
-                        headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"} 
- 
-                    })
-                    .done(function (msg) {
-                        console.log(msg);
-                        for (var i = 0; i < 10; i++){
-                            $("div").append("<h2><a href='"+ msg.documents[i].url +"'>" + msg.documents[i].title + "</a></h2>");
-                            $("div").append("<strong>저자:</strong> " + msg.documents[i].authors + "<br>");
-                            $("div").append("<strong>출판사:</strong> " + msg.documents[i].publisher + "<br>");
-                            $("div").append("<strong>요약:</strong> " + msg.documents[i].contents + "...<br>");
-                            $("div").append("<img src='" + msg.documents[i].thumbnail + "'/><br>");
-                        }
-                    });
- 
-                }
-                
-            });
-        })
- 
-        
-    </script>
+           
+        })    
+ 	 </script>
+ 	 
 	</form>
 	
-	<c:if test="${!empty book}">
+<%-- 	<c:if test="${!empty book}"> --%>
 		<table border="1">
 			<tr>
 				<th>일련번호</th>
@@ -102,7 +71,7 @@
 			</tr>
 
 			<tr>
-				<td>${book.isbn}</td>
+				<td><strong>저자:</strong>  msg.documents[i].authors</td>
 				<td>${book.book_name}</td>
 				<td>${book.publisher}</td>
 				<td>${book.author}</td>
@@ -114,7 +83,7 @@
 				<td>${book.book_cover}</td>
 			</tr>
 		</table>
-	</c:if>
+<%-- 	</c:if> --%>
 
 	<br>
 

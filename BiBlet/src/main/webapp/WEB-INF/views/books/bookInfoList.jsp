@@ -25,11 +25,11 @@
                 	console.log(msg);
                     for (var i = 0; i < 10; i++){
                         $("div").append("<img src='" + msg.documents[i].thumbnail + "'/><br>");		//표지
-                        $("div").append("<h2><a href='${pageContext.request.contextPath}/AppraisalPage/read/"+ msg.documents[i].isbn+"'>" + msg.documents[i].title + "</a></h2>");	//제목
+                        $("div").append("<h2><a href='${pageContext.request.contextPath}/AppraisalPage/read/"+ msg.documents[i].isbn.slice(0, 10)+"'>" + msg.documents[i].title + "</a></h2>");	//제목
                         $("div").append("<strong>저자:</strong> " + msg.documents[i].authors + "<br>");		//저자	
                         $("div").append("<strong>출판사:</strong> " + msg.documents[i].publisher + "<br>");		//출판사
                         $("div").append("<strong>줄거리:</strong> " + msg.documents[i].contents + "...<br>");		//줄거리
-                    	$("div").append("<strong>일련번호:</strong> " + msg.documents[i].isbn + "<br>");	//일련번호
+                    	$("div").append("<strong>일련번호:</strong>" + msg.documents[i].isbn + "<br>");	//일련번호
                     }
                 });
             })
@@ -52,7 +52,7 @@
  		
     <div></div>
  
-	
+	<input type="">
 	
 </body>
 </html>
