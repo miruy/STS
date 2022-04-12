@@ -106,7 +106,7 @@ public class AppraisalController {
 
 		comment.setStar(appraisal.getStar());
 //		System.out.println(appraisal.getStar());		
-		comment.setComment(appraisal.getComment());
+		comment.setBook_comment(appraisal.getBook_comment());
 //		System.out.println(appraisal.getBook_comment());		
 		comment.setStart_date(appraisal.getStart_date());
 //		System.out.println(appraisal.getStart_date());		

@@ -4,7 +4,7 @@ public class AppraisalVO {
 
 	private Long appraisal_num; // 평가 번호(시퀀스)
 	private int star; // 별점
-	private String comment; // 코멘트(평가)
+	private String book_comment; // 코멘트(평가)
 	private String start_date; // 도서 구독 시작 날짜
 	private String end_date; // 도서 구독 완료 날짜
 	private String co_prv; // 코멘트 공개 여부
@@ -12,12 +12,12 @@ public class AppraisalVO {
 
 	public AppraisalVO() {}
 
-	public AppraisalVO(Long appraisal_num, int star, String comment, String start_dater,
+	public AppraisalVO(Long appraisal_num, int star, String book_comment, String start_dater,
 			String end_date, String co_prv, int book_status_num) {
 
 		this.appraisal_num = appraisal_num;
 		this.star = star;
-		this.comment = comment;
+		this.book_comment = book_comment;
 		this.start_date = start_dater;
 		this.end_date = end_date;
 		this.co_prv = co_prv;
@@ -40,12 +40,14 @@ public class AppraisalVO {
 		this.star = star;
 	}
 
-	public String getComment() {
-		return comment;
+
+
+	public String getBook_comment() {
+		return book_comment;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setBook_comment(String book_comment) {
+		this.book_comment = book_comment;
 	}
 
 	public String getStart_date() {

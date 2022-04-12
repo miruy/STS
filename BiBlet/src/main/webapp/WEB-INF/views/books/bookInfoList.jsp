@@ -51,8 +51,9 @@
  	</p>
  		
     <div></div>
- 
-	<input type="">
-	
+ 	
+ 	<form method="post" >
+	<input type="hidden" name="isbn" value="${msg.documents[i].isbn.slice(0, 10)}">
+	</form>
 </body>
 </html>
