@@ -52,7 +52,9 @@ public class AppraisalController {
 		MemberVO member = new MemberVO();
 		Long mem_num = (long) 6; // 테스트용 회원 번호(현재 테이블에 6번회원까지 있음)
 		member.setMem_num(mem_num);
-
+		
+		
+		
 		comment.setStar(appraisal.getStar());
 //		System.out.println(appraisal.getStar());		
 		comment.setBook_comment(appraisal.getBook_comment());
@@ -62,8 +64,13 @@ public class AppraisalController {
 		comment.setEnd_date(appraisal.getEnd_date());
 //		System.out.println(appraisal.getEnd_date());		
 		comment.setCo_prv(appraisal.getCo_prv());
-//		System.out.println(appraisal.getCo_prv());
-		//appraisalService.writeComment(comment);
+	
+		comment.setBook_status_num(2); 	//평가 작성은 독서완료(2)일 때 허용
+		System.out.println(appraisal.getBook_status_num());
+		
+		logger.info(""+comment);
+		
+		appraisalService.writeComment(comment);
 		
 		System.out.println(isbn);
 		System.out.println(query);
