@@ -1,6 +1,6 @@
 package a.b.c.model;
 
-public class SearchCmd {
+public class BookJsonVO {
 	private String thumbnail;
 	private String title;
 	private String author;
@@ -8,9 +8,9 @@ public class SearchCmd {
 	private String contents;
 	private String isbn;
 	
-	public SearchCmd() {}
+	public BookJsonVO() {}
 
-	public SearchCmd(String thumbnail, String title, String author
+	public BookJsonVO(String thumbnail, String title, String author
 						,String publisher, String contents, String isbn) {
 		this.thumbnail = thumbnail;
 		this.title = title;
