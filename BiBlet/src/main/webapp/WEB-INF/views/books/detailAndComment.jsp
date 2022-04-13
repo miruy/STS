@@ -9,8 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>BiBlet 도서 상세/평가</title>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> 
-  	<!-- 도서 검색 -->
-
 </head>
 <body>
 	<form method="get" action="/BiBlet/AppraisalPage/list">
@@ -23,6 +21,7 @@
 			</select> 
 			
 			<input type="text" name="query" id="query" value="${query}" placeholder="제목, 저자 또는 출판사 검색" size=30> 
+			<input type="hidden" name="isbn" id="isbn" value="${isbn}">
 			<button id="search">검색</button>
  			</p>
 	</form>
@@ -74,25 +73,28 @@
 	
 	<br>
 	
-<%-- 	<c:if test="${!empty commentCount}"> --%>
-<%-- 		평가 총 개수 : ${commentCount}	 --%>
-<%-- 	</c:if> --%>
+	<c:if test="${!empty commentCount}">
+		평가 총 개수 : ${commentCount}	
+	</c:if>
 	
-<!-- 	<br> -->
+	<br>
 	
-<%-- 	<c:if test="${!empty commentsByMembers}"> --%>
-<%-- 		<c:forEach var="commentsByMember" items="${commentsByMembers}"> --%>
-<!-- 			<p> -->
-<%-- 			평가 번호 : ${commentsByMember.appraisal_num} --%>
-<%-- 			회원 : ${commentsByMember.mem_id} --%>
-<%-- 			프로필 : ${commentsByMember.mem_pic} --%>
-<%-- 			별점 : ${commentsByMember.star} --%>
-<%-- 			시작날짜 : ${commentsByMember.start_date} --%>
-<%-- 			다 읽은 날짜 : ${commentsByMember.end_date} --%>
-<%-- 			평가 : ${commentsByMember.book_comment} --%>
-<!-- 			</p> -->
-<%-- 		</c:forEach> --%>
-<%-- 	</c:if> --%>
+	<c:if test="${!empty commentsByMembers}">
+		<c:forEach var="commentsByMember" items="${commentsByMembers}">
+			<p>
+			평가 번호 : ${commentsByMember.appraisal_num}
+			회원 : ${commentsByMember.mem_id}
+			프로필 : ${commentsByMember.mem_pic}
+			별점 : ${commentsByMember.star}
+			시작날짜 : ${commentsByMember.start_date}
+			다 읽은 날짜 : ${commentsByMember.end_date}
+			평가 : ${commentsByMember.book_comment}
+			</p>
+		</c:forEach>
+	</c:if>
+	
+	
+	<!-- 도서 검색 -->
     <script>
         $(document).ready(function () {
             var pageNum = 1;
