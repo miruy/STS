@@ -10,7 +10,28 @@
 <title>BiBlet 테스트용 메인 페이지</title>
  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> 
   <!-- 도서 검색 -->
-    <script>
+    
+ 	 
+</head>
+<body>
+	<p>
+		검색 키워드 입력 : 
+		<select name="option">
+			<option value="title">제목</option>
+			<option value="author">저자</option>
+			<option value="publisher">출판사</option>
+		</select> 
+			
+		<input type="text" name="query" id="query" value="${query}" placeholder="제목, 저자 또는 출판사 검색" size=30> 
+		<button id="search">검색</button>
+ 	</p>
+ 		
+    <div></div>
+ 	
+ 	<form method="post" commandName="searchCmd">
+ 		<input type="hidden" value="${msg.documents[i].isbn}">
+ 	</form>
+ 	<script>
         $(document).ready(function () {
             var pageNum = 1;
             $("#search").click(function () {	//검색 버튼 클릭시 ajax실행
@@ -35,26 +56,6 @@
             })
         })    
  	 </script>
- 	 
-</head>
-<body>
-	<p>
-		검색 키워드 입력 : 
-		<select name="option">
-			<option value="title">제목</option>
-			<option value="author">저자</option>
-			<option value="publisher">출판사</option>
-		</select> 
-			
-		<input type="text" name="query" id="query" placeholder="제목, 저자 또는 출판사 검색" size=30> 
-		<button id="search">검색</button>
- 	</p>
- 		
-    <div></div>
- 	
- 	<form method="post" commandName="searchCmd">
- 		<input type="hidden" value="${msg.documents[i].isbn}">
- 	</form>
  
 </body>
 </html>
