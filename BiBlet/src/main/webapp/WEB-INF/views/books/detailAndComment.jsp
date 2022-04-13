@@ -104,7 +104,7 @@
                     data: { query: $("#query").val(), page: pageNum},
                     headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"} 
                 })
-                
+               
                 .done(function (msg) {	//검색 결과 담기 / [응답]
                 	console.log(msg);
                         $("#bookInfo").append("<img src='" + msg.documents[0].thumbnail + "'/><br>");		//표지
@@ -113,6 +113,7 @@
                         $("#bookInfo").append("<strong>출판사:</strong> " + msg.documents[0].publisher + "<br>");		//출판사
                         $("#bookInfo").append("<strong>줄거리:</strong> " + msg.documents[0].contents + "...<br>");		//줄거리
                     	$("#bookInfo").append("<strong>일련번호:</strong>" + msg.documents[0].isbn + "<br>");	//일련번호
+                    	var isbn = msg.documents[0].isbn;
                 });
            
         })    
