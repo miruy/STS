@@ -9,7 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>BiBlet 테스트용 메인 페이지</title>
  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script> 
-  <!-- 도서 검색 -->
     
  	 
 </head>
@@ -30,6 +29,7 @@
     
  	
  	<script>
+ 	  <!-- 도서 검색 -->
         $(document).ready(function () {
             var pageNum = 1;
             $("#search").click(function () {	//검색 버튼 클릭시 ajax실행
@@ -52,6 +52,30 @@
                     }
                 });
             })
+//             무한스크롤
+            $(window).scroll(function(){  
+                if ( Math.ceil($(window).scrollTop()) + $(window).height() >= $(document).height() ){
+                    pageNum++;
+                    $.ajax({
+                        method: "GET",
+                        url: "https://dapi.kakao.com/v3/search/book",
+                        data: { query: $("#query").val(),  page: pageNum},
+                        headers: {Authorization: "KakaoAK 6f9ab74953bbcacc4423564a74af264e"} 
+                    })
+                    .done(function (msg) {
+                        console.log(msg);
+                        for (var i = 0; i < 10; i++){
+                            $("div").append("<img src='" + msg.documents[i].thumbnail + "'/><br>");
+                            $("div").append("<h2>" + msg.documents[i].title + "</h2>");
+                            $("div").append("<strong>저자:</strong> " + msg.documents[i].authors + "<br>");
+                            $("div").append("<strong>출판사:</strong> " + msg.documents[i].publisher + "<br>");
+                            $("div").append("<strong>줄거리:</strong> " + msg.documents[i].contents + "...<br>");
+                            $("div").append("<strong>일련번호:</strong> " + msg.documents[i].isbn + "<br>");	//일련번호
+                        }
+                    });
+                }   
+            });
+
         })    
  	 </script>
  

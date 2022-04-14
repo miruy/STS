@@ -46,9 +46,11 @@ public class AppraisalController {
 	public String bookDetailAndComment(@RequestParam(required = false)String query, @PathVariable String isbn, Model model) {
 		System.out.println("bookDetailAndComment");	
 		
-		System.out.println(query);
+		System.out.println("get방식 : " + query);
 		
-		model.addAttribute("query", query);
+		model.addAttribute("query", query.split(",")[0]);
+		
+		System.out.println("아가미 검색시 query : "+ query);
 		System.out.println("read뒤에 isbn: " + isbn);
 
 		// 해당 도서의 대한 평가 갯수
@@ -59,6 +61,7 @@ public class AppraisalController {
 
 		// 해당 도서의 대한 모든 평가 불러오기
 		List<allCommentByBookCmd> commentsByMembers = appraisalService.findAllComment(isbn);
+		System.out.println("모든 평가 불러올 isbn: " + isbn);
 
 		for (allCommentByBookCmd test : commentsByMembers) {
 			logger.debug("mem_id:" + test.getMem_id());
@@ -121,9 +124,11 @@ public class AppraisalController {
 		appraisalService.writeComment(appraisal);
 		
 		String encodedParam = URLEncoder.encode(commentCmd.getQuery(), "UTF-8");
-		System.out.println("encodedParam.indexOf(0) : "+encodedParam.split(",")[0]);
+		System.out.println("encodedParam.indexOf(0) : "+encodedParam);
 		
-		return "redirect:/AppraisalPage/read/" + commentCmd.getIsbn() + "?query=" + encodedParam.split(",")[0];
+//		"redirect:/AppraisalPage/read/" + commentCmd.getIsbn() + "?query=" + encodedParam;
+		
+		return "redirect:/AppraisalPage/read/" + commentCmd.getIsbn() + "?query=" + encodedParam; 
 	}
 	
 	//메인 페이지
