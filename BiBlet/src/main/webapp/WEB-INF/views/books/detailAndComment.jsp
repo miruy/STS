@@ -67,6 +67,7 @@
 				<tr>
 				<td>
 				<input type="hidden" name="isbn" id="isbn" value="${isbn}" />
+				<input type="hidden" name="query" id="query" value="${query}" />
 				</td>
 				</tr>
 		</table>

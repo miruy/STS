@@ -1,5 +1,7 @@
 package a.b.c.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -74,7 +76,7 @@ public class AppraisalController {
 
 	// 평가 작성(insert)
 	@PostMapping(value = "/read/{isbn}")
-	public String writeComment(@ModelAttribute("appraisal")CommentCmd commentCmd, Model model) {
+	public String writeComment(@ModelAttribute("appraisal")CommentCmd commentCmd, Model model) throws UnsupportedEncodingException {
 	
 		AppraisalVO appraisal = new AppraisalVO();
 		BookShelfVO bookShelf = new BookShelfVO();
@@ -113,10 +115,15 @@ public class AppraisalController {
 		bookShelf.setIsbn(commentCmd.getIsbn());
 		System.out.println("보관함에 들어갈 ISBN : " + bookShelf.getIsbn());
 		
+		System.out.println("query : " + commentCmd.getQuery());
+		
 		appraisalService.insertBookShelf(bookShelf);
 		appraisalService.writeComment(appraisal);
-
-		return "detailAndComment";
+		
+		String encodedParam = URLEncoder.encode(commentCmd.getQuery(), "UTF-8");
+		System.out.println("encodedParam.indexOf(0) : "+encodedParam.split(",")[0]);
+		
+		return "redirect:/AppraisalPage/read/" + commentCmd.getIsbn() + "?query=" + encodedParam.split(",")[0];
 	}
 	
 	//메인 페이지
