@@ -30,19 +30,17 @@
 		 
 		 </div>
 	
-
-	<form method="post" commandName="optionCmd">
-		<select name="option" id="option">
-			<option value=0>찜</option>
-			<option value=1>보는 중</option>
-			<option value=2>독서 완료</option>
-		</select>
-<!-- 		<input type="submit" value="독서 상태 입력"> -->
-	</form>
-
 	
-
+<!-- 	appraisal커맨드 객체에 option도 넣어서 보내고 찜 보는 중 독서완료 int로 다시 바꾸 -->
 	<form method="post" commandName="appraisal">
+		<select name="option">
+			<option value="default"></option>
+			<option value="찜">찜</option>
+			<option value="보는중">보는 중</option>
+			<option value="독서완료">독서 완료</option>
+		</select>
+		
+		
 		<table border="1">
 			<tr>
 				<th>별점</th>

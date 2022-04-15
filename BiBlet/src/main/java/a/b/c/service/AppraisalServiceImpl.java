@@ -48,8 +48,8 @@ public class AppraisalServiceImpl implements AppraisalService {
 	
 	//평가 작성 시 도서isbn과 상태(독서완료) 저장
 	@Override
-	public void insertBookShelf(BookShelfVO bookShelf) {
-		appraisalDAO.insertBookShelf(bookShelf);
+	public BookShelfVO insertBookShelf(BookShelfVO bookShelf) {
+		return appraisalDAO.insertBookShelf(bookShelf);
 	}
 	
 	//해당 도서의 대한 평가 갯수

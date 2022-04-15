@@ -47,9 +47,17 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 	
 	//평가 작성 시 도서 ISBN과 상태(독서완료) 작성
 	@Override
-	public void insertBookShelf(BookShelfVO bookShelf) {
-		sqlSessionTemplate.insert("insertBookShelf", bookShelf);
+	public BookShelfVO insertBookShelf(BookShelfVO bookShelf) {
+			sqlSessionTemplate.insert("insertBookShelf", bookShelf);
+		return selectBookShelf(bookShelf);
 	}
+	
+	@Override
+	public BookShelfVO selectBookShelf(BookShelfVO bookShelf) {
+		return sqlSessionTemplate.selectOne("selectBookShelf", bookShelf);
+	}
+	
+	
 
 //	//해당 도서의 대한 모든 평가 불러오기
 	@Override

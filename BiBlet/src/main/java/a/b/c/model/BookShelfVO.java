@@ -2,13 +2,13 @@ package a.b.c.model;
 
 public class BookShelfVO {
 	private Long book_status_num;	//상태번호PK
-	private int book_status;	//상태 0:찜, 1:보는 중, 2:완료
+	private String book_status;	//상태 0:찜, 1:보는 중, 2:완료
 	private Long mem_num;	//회원번호FK
 	private String isbn;
 	
 	public BookShelfVO(){}
 	
-	public BookShelfVO(Long book_status_num, int book_status, Long mem_num, String isbn) {
+	public BookShelfVO(Long book_status_num, String book_status, Long mem_num, String isbn) {
 		this.book_status_num = book_status_num;
 		this.book_status = book_status;
 		this.mem_num = mem_num;
@@ -23,11 +23,11 @@ public class BookShelfVO {
 		this.book_status_num = book_status_num;
 	}
 
-	public int getBook_status() {
+	public String getBook_status() {
 		return book_status;
 	}
 
-	public void setBook_status(int book_status) {
+	public void setBook_status(String book_status) {
 		this.book_status = book_status;
 	}
 

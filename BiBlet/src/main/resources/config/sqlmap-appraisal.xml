@@ -15,6 +15,10 @@
 	VALUES(bookshelf_SEQ.nextval, #{book_status}, #{mem_num}, #{isbn})
 	</insert>
 	
+	<select id="selectBookShelf" parameterType="bookShelf" resultType="bookShelf">
+	SELECT * FROM bookshelf WHERE isbn=#{isbn} AND mem_num=#{mem_num}
+	</select>
+	
 	<select id="findAllComment" parameterType="String" resultType="allCommentByBookCmd">
 <!--     MEMBER,APPRAISAL 조인     -->
 	SELECT 
