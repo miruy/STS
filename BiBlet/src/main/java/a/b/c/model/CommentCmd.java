@@ -8,12 +8,12 @@ public class CommentCmd {
 	private String co_prv; // 코멘트 공개 여부
 	private String isbn;
 	private String query;
-	private String option;
+	private int option;
 
 	public CommentCmd() {}
 
 	public CommentCmd(int star, String book_comment, String start_dater,
-			String end_date, String co_prv, String isbn, String query, String option) {
+			String end_date, String co_prv, String isbn, String query, int option) {
 
 		this.star = star;
 		this.book_comment = book_comment;
@@ -82,11 +82,11 @@ public class CommentCmd {
 		this.query = query;
 	}
 
-	public String getOption() {
+	public int getOption() {
 		return option;
 	}
 
-	public void setOption(String option) {
+	public void setOption(int option) {
 		this.option = option;
 	}
 	

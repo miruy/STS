@@ -2,9 +2,9 @@ package a.b.c.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -90,13 +90,14 @@ public class AppraisalController {
 
 		//테스트 하기 전마다 회원 등록 후 평가작성을 하지 않은 새로운 회원번호로 진행해야함 
 		MemberVO member = new MemberVO();
-		Long mem_num = (long) 11; // 테스트용 회원 번호(현재 테이블에 6번회원까지 있음)
+		Long mem_num = (long) 12; // 테스트용 회원 번호(현재 테이블에 6번회원까지 있음)
 		member.setMem_num(mem_num);
 		
 		
 		System.out.println("option : " + commentCmd.getOption());
 		
 		BookShelfVO bookShelf = new BookShelfVO();
+		
 		
 		bookShelf.setBook_status(commentCmd.getOption());	//테스트용
 		System.out.println("보관함에 들어갈 독서상태 : " + bookShelf.getBook_status());
@@ -136,14 +137,14 @@ public class AppraisalController {
 
 		
 		appraisal.setBook_status_num(bookShelf.getBook_status_num());
-		System.out.println(bookShelf.getBook_status_num());
+		System.out.println("bookShelf.getBook_status_num() : " + bookShelf.getBook_status_num());
 		
 		System.out.println("독성상태 : " + appraisal.getBook_status_num());
 
 		System.out.println("isbn : " + commentCmd.getIsbn());
 
 		System.out.println("query : " + commentCmd.getQuery());
-
+		
 		appraisalService.writeComment(appraisal);
 		System.out.println("write//comment성공");
 		

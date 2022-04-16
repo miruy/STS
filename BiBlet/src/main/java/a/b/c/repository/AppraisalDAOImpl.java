@@ -1,6 +1,8 @@
 package a.b.c.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -56,7 +58,6 @@ public class AppraisalDAOImpl implements AppraisalDAO {
 	public BookShelfVO selectBookShelf(BookShelfVO bookShelf) {
 		return sqlSessionTemplate.selectOne("selectBookShelf", bookShelf);
 	}
-	
 	
 
 //	//해당 도서의 대한 모든 평가 불러오기

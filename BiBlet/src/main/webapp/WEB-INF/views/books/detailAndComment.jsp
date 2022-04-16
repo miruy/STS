@@ -31,14 +31,15 @@
 		 </div>
 	
 	
-<!-- 	appraisal커맨드 객체에 option도 넣어서 보내고 찜 보는 중 독서완료 int로 다시 바꾸 -->
 	<form method="post" commandName="appraisal">
+		독서 상태 : 
 		<select name="option">
-			<option value="default"></option>
-			<option value="찜">찜</option>
-			<option value="보는중">보는 중</option>
-			<option value="독서완료">독서 완료</option>
+			<option value="none">=== 선택 ===</option>
+			<option value=0>찜</option>
+			<option value=1>보는 중</option>
+			<option value=2>독서 완료</option>
 		</select>
+			* 평가 작성은 독서 완료 시 가능합니다.
 		
 		
 		<table border="1">
