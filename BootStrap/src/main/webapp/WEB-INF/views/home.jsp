@@ -28,7 +28,11 @@
 	    Checked checkbox
 	  </label>
 	</div>
-
+	
+	<div class="sticky-sm-top">Stick to the top on viewports sized SM (small) or wider</div>
+	<div class="sticky-md-top">Stick to the top on viewports sized MD (medium) or wider</div>
+	<div class="sticky-lg-top">Stick to the top on viewports sized LG (large) or wider</div>
+	<div class="sticky-xl-top">Stick to the top on viewports sized XL (extra-large) or wider</div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
