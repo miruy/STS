@@ -21,21 +21,49 @@
   </head>
   <body>
   
-<!-- tailwind 적용된 것 : class명이 t- 로 되어 있는 부분은 우선 무시하기 -->
+	# tailwind 적용된 것 : class명이 t- 로 되어 있는 부분은 우선 무시하기
     <h1 class="t-bg-gray-500 t-text-red-500">Hello, world!</h1>
     
     
+    <br>
     
     
-    
-<!--   부트스트랩 적용된 것 : 한 문단을 전체를 감싼 div class 중요 / form-check-->
+  	# 부트스트랩 적용된 것 : 한 문단을 전체를 감싼 div class 중요 / form-check
     <div class="form-check">
 	  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-	  <label class="form-check-label t-text-red-500" for="flexCheckChecked">
+	  <label class="form-check-label for="flexCheckChecked">
 	    Checked checkbox
 	  </label>
 	</div>
 	
+	<br>
+	
+	# 스위치 버튼
+	<div class="form-check form-switch">
+	  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+	  <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+	</div>
+	<div class="form-check form-switch">
+	  <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+	  <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
+	</div>
+
+	<br>
+	
+	<div class="mb-3">
+	  <label for="exampleFormControlInput1" class="form-label">Email address</label>
+	  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+	</div>
+	<div class="mb-3">
+	  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+	  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+	</div>
+	
+	<br>
+	
+	# 색 선택
+	<label for="exampleColorInput" class="form-label">Color picker</label>
+<input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color">
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
