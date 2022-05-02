@@ -20,8 +20,15 @@
     <title>Hello, world!</title>
   </head>
   <body>
+  
+<!-- tailwind 적용된 것 : class명이 t- 로 되어 있는 부분은 우선 무시하기 -->
     <h1 class="t-bg-gray-500 t-text-red-500">Hello, world!</h1>
     
+    
+    
+    
+    
+<!--   부트스트랩 적용된 것 : 한 문단을 전체를 감싼 div class 중요 / form-check-->
     <div class="form-check">
 	  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
 	  <label class="form-check-label t-text-red-500" for="flexCheckChecked">
@@ -29,10 +36,6 @@
 	  </label>
 	</div>
 	
-	<div class="sticky-sm-top">Stick to the top on viewports sized SM (small) or wider</div>
-	<div class="sticky-md-top">Stick to the top on viewports sized MD (medium) or wider</div>
-	<div class="sticky-lg-top">Stick to the top on viewports sized LG (large) or wider</div>
-	<div class="sticky-xl-top">Stick to the top on viewports sized XL (extra-large) or wider</div>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
